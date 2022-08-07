@@ -9,7 +9,7 @@
 <main class="container">   
     <div class="row g-5">
         <div class="col-md-12">
-            <a href="{% url 'BlogifyImages' %}">regresar</a> 
+            <a href="{% url 'BlogifyImages' %}">Regresar</a> 
             <h3 class="pb-4 mb-4 fst-italic border-bottom">
                 ¿Eliminar {{image.title}}?
             </h3>                                    
@@ -27,7 +27,7 @@
                 {{ form.as_p}}
                 {% if linked_blog is not None or linked_profile is not None or linked_page is not None %}   
                 <div style="text-align: center;">
-                    <div>Esta imagen no puede ser eliminada porque esta vinculada con:</div> 
+                    <div>Esta imagen sólo puede ser eliminada por el administrador, se encuentra vinculada con el blog:</div> 
                     {% for blog in linked_blog %}  
                         <div>Blog: <b>{{blog.title}}</b></div>                         
                     {% endfor %} 

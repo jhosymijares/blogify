@@ -17,28 +17,28 @@
     {% csrf_token %}
     <div class="container">
         <div>
-            <a href="{% url 'BlogifyPageList' %}">regresar</a>
+            <a href="{% url 'BlogifyPageList' %}">Regresar</a>
         </div>
         <div>
-            <a href="{% url 'AccountChangePass' %}">cambiar contraseña</a>
+            <a href="{% url 'AccountChangePass' %}">Cambiar contraseña</a>
         </div>                
         
         <div class="form-floating">
             <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username" class="form-control" placeholder="" value="{{user.username}}" disabled="disabled">
            
-            <label for="id_username">Nombre de Usuario</label>
+            <label for="id_username">Nombre de usuario</label>
             <p></p>
         </div>
 
         <div class="form-floating">
             <input type="text" name="first_name" maxlength="150" id="id_first_name" class="form-control" placeholder="" value="{{user.first_name}}">
-            <label for="id_first_name">Nombre</label>
+            <label for="id_first_name">Nombres</label>
             <p></p>
         </div>
 
         <div class="form-floating">
             <input type="text" name="last_name" maxlength="150" id="id_last_name" class="form-control" placeholder="" value="{{user.last_name}}">
-            <label for="id_last_name">Apellido</label>
+            <label for="id_last_name">Apellidos</label>
             <p></p>
         </div>
 
@@ -50,14 +50,14 @@
 
         <div class="form-floating">
             <textarea name="description"  id="id_description" class="form-control" style="height: 180px;" placeholder="">{{profile.description}}</textarea>
-            <label for="id_description">Descripción</label>
+            <label for="id_description">Acerca de mí</label>
             <p></p>
         </div>
 
         <div class="form-floating">
             <input type="hidden" class="form-control" id="image" name="image" value="{{blog.image.id}}">
             <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Seleccione una Imagen
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Agregar foto de perfil
                 </button>
                 <ul class="dropdown-menu">
                     {% for image in images %}  
@@ -73,7 +73,7 @@
 
         <div class="form-floating">
             <input type="text" name="url_site" id="id_url_site" class="form-control" placeholder="" value="{{profile.url_site}}">
-            <label for="id_url_site">Url del Sitio Web</label>
+            <label for="id_url_site">URL del blog</label>
             <p></p>
         </div>
 

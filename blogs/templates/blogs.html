@@ -10,9 +10,9 @@
         <div class="row g-5">
             <div class="col-md-12">
                 <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                    Lista de Blogs
+                    Lista de blogs
                 </h3>  
-                <a href="{% url 'BlogifyBlogCreate' %}">Crear Nuevo Blog</a>
+                <a href="{% url 'BlogifyBlogCreate' %}">Crear nuevo blog</a>
                 <ul>
                     {% for blog in blogs %}            
                     <article class="blog-post">                        
@@ -30,11 +30,11 @@
                             {{blog.subtitle|safe|linebreaksbr}}...
                         {% endautoescape %}
                         <div>
-                        <a href="{% url 'BlogifyBlogsDetail' blog.id %}">Leer más</a>
+                        <a href="{% url 'BlogifyBlogsDetail' blog.id %}">Leer más...</a>
                         </div>                  
                         {% if blog.author == user.username %}
                             <div>
-                                <a href="{% url 'BlogifyBlogUpdate' blog.id %}">Actualizar</a>                                 
+                                <a href="{% url 'BlogifyBlogUpdate' blog.id %}">Editar</a>                                 
                             </div>   
                             <div>
                                 <a href="{% url 'BlogifyBlogDelete' blog.id %}">Eliminar</a>   

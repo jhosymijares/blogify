@@ -20,7 +20,7 @@
     <script src="//cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>   
 
     <main class="container">   
-        <a href="{% url 'BlogifyBlogsList' %}">regresar</a>         
+        <a href="{% url 'BlogifyBlogsList' %}">Regresar</a>         
             <div class="container">
                 <form method="POST">    
                     {% csrf_token %} 
@@ -29,7 +29,7 @@
                             <!--  {{ form.as_p}}-->
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingUserInputMessage" placeholder="Nombre de Usuario" name="title" value="{{blog.title}}">
-                                <label for="floatingUserInputMessage">Título</label>
+                                <label for="floatingUserInputMessage">Título del blog</label>
                                 <p></p>
                             </div>
                             <div class="form-floating">

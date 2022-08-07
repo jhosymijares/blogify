@@ -10,7 +10,7 @@
           <div class="col-12 text-center">
             <a class="blog-header-logo text-dark" href="/">Blogify</a>        
             {% if is_authenticated == True%}
-                <div style="margin-top:10px">Bienvenido 
+                <div style="margin-top:10px">Bienvenido a Blogify 
                     <a href="/accounts/profile/" class="no-link"><b>{{greeting}}</b></a>
                 </div>                                     
             {% endif %}       
@@ -21,10 +21,10 @@
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between" style="float:right">
             {% if is_authenticated == True%}
-                <a class="p-2 link-secondary" href="/accounts/logout">Cerrar Sesión</a>
+                <a class="p-2 link-secondary" href="/accounts/logout">Cerrar sesión</a>
             {% else %}
-                <a class="p-2 link-secondary" href="/accounts/signup">Sign up</a>
-                <a class="p-2 link-secondary" href="/accounts/login">Iniciar Sesión</a>
+                <a class="p-2 link-secondary" href="/accounts/signup">Regístrate</a>
+                <a class="p-2 link-secondary" href="/accounts/login">Iniciar sesión</a>
             {% endif %}  
         </nav>         
     </div>
@@ -43,7 +43,7 @@
             <a class="p-2 link-secondary" href="/blogify/images">Imágenes</a>
         {% endif %}    
         {% if is_authenticated == True and is_profile == True %}
-            <a class="p-2 link-secondary" href="/accounts/profile">Mi Perfil</a>
+            <a class="p-2 link-secondary" href="/accounts/profile">Mi perfil</a>
         {% endif %}   
         {% if is_authenticated == True and is_profile == True %}
             <a class="p-2 link-secondary" href="/blogify/messenger/chat">Chat</a>

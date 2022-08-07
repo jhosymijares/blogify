@@ -7,7 +7,7 @@
 {% block content %}
 
 <div class="container">
-  <a href="{% url 'BlogifyInit' %}">regresar</a>
+  <a href="{% url 'BlogifyInit' %}">Regresar</a>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
      <!-- {{ form.as_p }}-->
@@ -25,13 +25,13 @@
       <div class="form-floating">
         {% if img_obj %}
           <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
-          <p>Imágen cargada exitósamente: <br><b>{{img_obj.title}}</b></p>
+          <p>Imagen cargada exitósamente: <br><b>{{img_obj.title}}</b></p>
         {% endif %}
         <p></p>
       </div>
 
       <div style="text-align: center;">
-          <button type="submit">Cargar</button>
+          <button type="submit">Subir</button>
       </div>    
   </form>
 </div>
@@ -40,7 +40,7 @@
   <div class="row g-5">
       <div class="col-md-12">
           <h3 class="pb-4 mb-4 fst-italic border-bottom">
-              Lista de Imágenes
+              Lista de imágenes
           </h3>  
           <ul>
               {% for image in imageList %}            

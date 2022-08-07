@@ -10,9 +10,9 @@
     <div class="row g-5">
         <div class="col-md-12">
             <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                Listado de Páginas
+                Listado de páginas
             </h3>  
-            <a href="{% url 'BlogifyPageCreate' %}">Crear Nueva Página</a>
+            <a href="{% url 'BlogifyPageCreate' %}">Crear nueva página</a>
             <ul>
                 {% for page in pages %}            
                 <article class="blog-post">
@@ -22,7 +22,7 @@
                     {% if page.image.image is not None%}
                         <img src="/media/{{page.image.image}}" title="{{page.image.title}}"/>
                         <p class="blog-post-meta" style="width:100%;font-size: 10px;">
-                            Fecha publicación imagen {{page.image.creation|date:'Y-m-d'}}                                                               
+                            Fecha de publicación {{page.image.creation|date:'Y-m-d'}}                                                               
                         </p>                            
                     {% endif %}
 
@@ -31,10 +31,10 @@
                     {% endautoescape %}
 
                     <div>
-                        <a href="{% url 'BlogifyPageDetail' page.id%}">Leer más</a>
+                        <a href="{% url 'BlogifyPageDetail' page.id%}">Leer más...</a>
                     </div>
                     <div>
-                        <a href="{% url 'BlogifyPageUpdate' page.id %}">Actualizar</a> 
+                        <a href="{% url 'BlogifyPageUpdate' page.id %}">Editar</a> 
                     </div>
                     <div>
                         <a href="{% url 'BlogifyPageDelete' page.id %}">Eliminar</a>  

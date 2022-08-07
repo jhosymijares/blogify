@@ -20,12 +20,11 @@
     
     <form method="POST">
         {% csrf_token %}
-         <!--{{form.as_p}}-->
          <div class="container">
-            <a href="{% url 'BlogifyBlogsList' %}">regresar</a>
+            <a href="{% url 'BlogifyBlogsList' %}">Regresar</a>
             <div class="form-floating">
                 <input type="text" class="form-control" id="floatingUserInputMessage" placeholder="Nombre de Usuario" name="title">
-                <label for="floatingUserInputMessage">Título</label>
+                <label for="floatingUserInputMessage">Título del blog</label>
                 <p></p>
             </div>
             <div class="form-floating">
@@ -53,53 +52,11 @@
          </div>        
     </form>
     <script>
-        // instance, using default configuration.
         CKEDITOR.replace('id_body',);
-       /* CKEDITOR.replace( 'id_body', {
-        height: '600px',
-        enterMode: CKEDITOR.ENTER_BR, 
-        toolbar:    
-        [   { name: 'document', groups: [ 'document', 'doctools' ], items: [ 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },
-            { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
-            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl' ] },        '/',
-            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
-            { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] }, { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
-            { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak', 'Iframe', 'Syntaxhighlight' ] }, '/',
-            { name: 'styles', items: [ 'Format', 'Font', 'FontSize' ] },
-            { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-            { name: 'others', groups: [ 'mode' ], items: [ 'Source', 'searchCode', 'autoFormat', 'CommentSelectedRange', 'UncommentSelectedRange', 'AutoComplete', '-', 'ShowBlocks' ] },
-            { name: 'tools', items: [ 'Maximize' ] },
-        ]});*/
 
         function select_imge_blog(image_id,image_title){
             $("#image").val(image_id)
             $("#dropdownMenu1").text(image_title)
-        }
-
-        var escapeHtml = (text) => {
-            return text
-                .replaceAll('<p>', '')
-                .replaceAll('</p>', '')
-                .replaceAll('<strong>', '')
-                .replaceAll('</strong>', '')
-                .replaceAll('\n', ' ')
-
-                
-            //.replaceAll('&', '')
-            /*.replaceAll('<', '')
-            .replaceAll('>', '')
-            .replaceAll('"', '')
-            .replaceAll("'", '')
-            .replaceAll("/", '')
-            .replaceAll("p", '')*/
-        }
-        function smart_substr(str, len) {
-            var temp = str.substr(0, len);
-            if(temp.lastIndexOf('<') > temp.lastIndexOf('>')) {
-                temp = str.substr(0, 1 + str.indexOf('>', temp.lastIndexOf('<')));
-            }
-        }
-        var s= escapeHtml(CKEDITOR.instances.id_body.getData())
-        
+        }   
     </script>
 {% endblock %}

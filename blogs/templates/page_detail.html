@@ -10,18 +10,15 @@
     <div class="row g-5">
         <div class="col-md-12">
             <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                Detalle Page
+                {{page.title}}
             </h3>  
-            <a href="{% url 'BlogifyPageList' %}">regresar</a>
+            <a href="{% url 'BlogifyPageList' %}">Regresar</a>
             <ul>
                 <article class="blog-post">
-                    <h2 class="blog-post-title mb-1">{{page.title}}</h2>
-                    <!--<p class="blog-post-meta">January 1, 2021 by <a href="#">{{greeting}}</a></p>-->
-
                     {% if page.image.image is not None%}
                         <img src="/media/{{page.image.image}}" title="{{page.image.title}}"/>
                         <p class="blog-post-meta" style="width:100%;font-size: 10px;">
-                            Fecha publicación imagen {{page.image.creation|date:'Y-m-d'}}                                                               
+                            Fecha de publicación {{page.image.creation|date:'Y-m-d'}}                                                               
                         </p>                            
                     {% endif %}
 
