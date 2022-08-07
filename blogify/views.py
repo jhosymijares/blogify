@@ -1,24 +1,15 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-# To load templates
 from django.template import loader
 from blogs.models import Blog
 from blogs.models import Page
-
-# To CBV
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
-# Datetime
 import datetime
-
 from accounts.models import Profile
-
 from blogs.models import Image
-
 from blogs.models import ImageForm
-
 from django.db.models import ProtectedError
 
 #Blogify Views
@@ -47,7 +38,6 @@ def image_upload_view(request):
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            # Get the current instance object to display in the template
             img_obj = form.instance
             context["form"]=form
             context["img_obj"]=img_obj
@@ -132,7 +122,6 @@ class PageDetail(DetailView):
         context = super().get_context_data(**kwargs)
         set_user_context(self.request,context)
         # Add in a QuerySet of all the books
-
         set_header_menu_comtext(context,False)  
         return context
 
@@ -210,6 +199,7 @@ class BlogDetail(DetailView):
         set_user_context(self.request,context)
         set_header_menu_comtext(context,False) 
         return context
+
 
 class BlogCreate(CreateView):
     model = Blog

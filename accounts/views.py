@@ -1,28 +1,15 @@
 from django.shortcuts import render,redirect
-# to send http response
 from django.http import HttpResponse
-# To load templates
 from django.template import loader
-# To login form authentication
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
-# To mixin
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-# To decorator
 from django.contrib.auth.decorators import login_required
-
-# To signup
 from django.contrib.auth.forms import UserCreationForm
-
 from django.contrib.auth.models import User
-
 from accounts.models import Profile
-
-# To Change Password
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
-
 from blogs.models import Image
 
 #Accounts Views
@@ -33,13 +20,11 @@ def set_user_context(request,context):
     else:
         context["greeting"] = request.user
 
-#@login_required(redirect_field_name='next', login_url='/accounts/login')
 def account_init(request):
     if(request.user.is_authenticated):
         return redirect('profile/')
     else:
         return redirect('login/')
-    #return HttpResponse("accounts.init")
 
 def account_login(request):
     if(request.user.is_authenticated):
@@ -63,10 +48,7 @@ def account_login(request):
                     print(next)
                     return redirect(next)
                 else:
-                    return redirect("/")
-                    #return HttpResponse(login_template.render({
-                    #    "message": f"¡Bienvenido {username}!"
-                    #}))                
+                    return redirect("/")            
             else:
                 return HttpResponse(login_template.render({
                     "message":"Error, datos incorrectos"
@@ -81,7 +63,6 @@ def account_login(request):
         "form": AuthenticationForm()
     }))
 
-#@login_required
 @login_required(redirect_field_name='next', login_url='/accounts/login')
 def account_profile(request):
     context={}
@@ -152,7 +133,6 @@ def account_signup(request):
                 "mensaje": "Error por favor valide los datos ingresados",
                 "form": UserCreationForm()
             }))
-
     return HttpResponse(signup_template.render({
         "form": UserCreationForm()
     }))
