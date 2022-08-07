@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="generator" content="">
-    <title>Blogify Iniciar Sesión</title>
+    <title>Blogify Iniciar sesión</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">    
 
     <style>
@@ -108,22 +108,14 @@
         
         <form method="post">
             {% csrf_token %}
-            <!--{{ form.as_p }}-->
             <div class="form-floating">
                 <input type="text" class="form-control" id="floatingUserInputMessage" placeholder="Nombre de Usuario" name="username">
-                <label for="floatingUserInputMessage">Nombre de Usuario</label>
+                <label for="floatingUserInputMessage">Nombre de usuario</label>
             </div>
             <div class="form-floating">
                 <input type="password" class="form-control" id="floatingPasswordInputMessage" placeholder="Contraseña" name="password">
                 <label for="floatingPasswordInputMessage">Contraseña</label>
             </div>
-
-            <!--<div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-            </div>-->
-
             <button class="w-100 btn btn-lg btn-primary" type="submit">Ingresar</button>
             <label style="color:red;font-weight:bold">{{message}}</label>
         </form>
