@@ -33,7 +33,7 @@
             <div class="form-floating">
                 <input type="hidden" class="form-control" id="image" name="image">
                 <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Seleccione una Imagen
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Seleccione una imagen
                     </button>
                     <ul class="dropdown-menu">
                         {% for image in images %}  
@@ -43,6 +43,7 @@
                         </li> 
                         {% endfor %}                      
                     </ul>
+                    <p>Todas las imágenes deben estar subidas previamente en la sección <a href="{% url 'BlogifyImages' %}">Imágenes</a></p>
                 </div>
                 <p></p>
             </div> 

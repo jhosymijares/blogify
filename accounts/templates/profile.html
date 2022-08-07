@@ -57,7 +57,7 @@
         <div class="form-floating">
             <input type="hidden" class="form-control" id="image" name="image" value="{{blog.image.id}}">
             <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Agregar foto de perfil
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Foto de perfil
                 </button>
                 <ul class="dropdown-menu">
                     {% for image in images %}  
@@ -67,6 +67,7 @@
                     </li> 
                     {% endfor %}                      
                 </ul>
+                <p>Todas las imágenes deben estar subidas previamente en la sección <a href="{% url 'BlogifyImages' %}">Imágenes</a></p>
             </div>
             <p></p>
         </div> 
