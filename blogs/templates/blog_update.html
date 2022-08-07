@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}
+   BlogiFy Blog Update
+{% endblock %}
+
+{% block content %}
+    <script src="//cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script> 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <script src="//cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>   
+
+    <main class="container">   
+        <a href="{% url 'BlogifyBlogsList' %}">regresar</a>         
+            <div class="container">
+                <form method="POST">    
+                    {% csrf_token %} 
+                    <div class="row g-5">
+                        <div class="col-md-12">                            
+                            <!--  {{ form.as_p}}-->
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingUserInputMessage" placeholder="Nombre de Usuario" name="title" value="{{blog.title}}">
+                                <label for="floatingUserInputMessage">Título</label>
+                                <p></p>
+                            </div>
+                            <div class="form-floating">
+                                <input type="hidden" class="form-control" id="image" name="image" value="{{blog.image.id}}">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Seleccione una Imagen
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        {% for image in images %}  
+                                        <li>
+                                            <a href="#!" onclick='select_img_blog("{{image.id}}","{{image.title}}")' >
+                                            <img src="/media/{{image.image}}" width="100px" />{{image.title}}</a>
+                                        </li> 
+                                        {% endfor %}                      
+                                    </ul>
+                                </div>
+                                <p></p>
+                            </div> 
+                            <div class="django-ckeditor-widget" data-field-id="id_body" style="display: inline-block;width:100%">
+                                <textarea name="body" cols="40" rows="10" id="id_body" data-processed="0" data-config="{&quot;skin&quot;: &quot;moono-lisa&quot;, &quot;toolbar_Basic&quot;: [[&quot;Source&quot;, &quot;-&quot;, &quot;Bold&quot;, &quot;Italic&quot;]], &quot;toolbar_Full&quot;: [[&quot;Styles&quot;, &quot;Format&quot;, &quot;Bold&quot;, &quot;Italic&quot;, &quot;Underline&quot;, &quot;Strike&quot;, &quot;SpellChecker&quot;, &quot;Undo&quot;, &quot;Redo&quot;], [&quot;Link&quot;, &quot;Unlink&quot;, &quot;Anchor&quot;], [&quot;Image&quot;, &quot;Flash&quot;, &quot;Table&quot;, &quot;HorizontalRule&quot;], [&quot;TextColor&quot;, &quot;BGColor&quot;], [&quot;Smiley&quot;, &quot;SpecialChar&quot;], [&quot;Source&quot;]], &quot;toolbar&quot;: &quot;Full&quot;, &quot;height&quot;: 291, &quot;width&quot;: 835, &quot;filebrowserWindowWidth&quot;: 940, &quot;filebrowserWindowHeight&quot;: 725, &quot;language&quot;: &quot;en-us&quot;}" data-external-plugin-resources="[]" data-id="id_body" data-type="ckeditortype">
+                                    {{blog.body}}
+                                </textarea>
+                            </div>
+                            <div style="text-align: center;">
+                                <input type="submit" value="Actualizar"/>
+                            </div>                                    
+                            <br>                                                         
+                        </div>         
+                    </div>  
+                </form>  
+            </div>        
+    </main>  
+    <script>
+        // instance, using default configuration.
+        CKEDITOR.replace('id_body',);
+        if("{{blog.image.id}}"!==""){
+            select_img_blog("{{blog.image.id}}","{{blog.image.title}}")
+        }        
+        function select_img_blog(image_id,image_title){
+            $("#image").val(image_id)
+            $("#dropdownMenu1").text(image_title)
+        }
+    </script>
+{% endblock %}

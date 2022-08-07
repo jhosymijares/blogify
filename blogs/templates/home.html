@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}
+   BlogiFy home
+{% endblock %}
+
+{% block content %}
+  <style>
+    pre{
+        display: grid;
+    }
+  </style>
+<main class="container">      
+    <div class="row g-5">
+        <div class="col-md-8">
+            <h3 class="pb-4 mb-4 fst-italic border-bottom">
+                Lista de Blogs
+            </h3>              
+            {% for blog in blogs %}            
+                <article class="blog-post">
+                    <h5 class="blog-post-title mb-1">{{blog.title}}</h5> 
+                    <p class="blog-post-meta">{{blog.creation|date:'Y-m-d H:i '}} publicado por <b>{{blog.author}}</b></p>
+
+                    {% if blog.image.image is not None%}
+                        <img src="/media/{{blog.image.image}}" title="{{blog.image.title}}"/>
+                        <p class="blog-post-meta" style="width:100%;font-size: 10px;">
+                            Fecha publicación imagen {{blog.image.creation|date:'Y-m-d'}}                                                               
+                        </p>                            
+                    {% endif %}
+
+                    <div style="width:100%;overflow:auto">                          
+                        {{blog.subtitle|safe|linebreaksbr}}...                            
+                    </div>                                                                                
+                    <hr>                
+                </article>
+            {% endfor %}             
+        </div>
+  
+        <div class="col-md-4">
+            <div class="position-sticky" style="top: 2rem;">
+                {% if description != None %}
+                
+                <div class="p-4 mb-3 bg-light rounded">
+                    <h4 class="fst-italic">Descripción</h4>
+                    <p class="mb-0">
+                        <div style="overflow: auto;width: 100%;">
+                            {{description|safe|linebreaksbr}}
+                        </div>                        
+                    </p>
+                </div>
+
+                {% endif %} 
+                <div class="p-4">
+                    <h4 class="fst-italic">Lista de Páginas</h4>          
+                    <ol class="list-unstyled mb-0">
+                    {% for page in pages %}            
+                        <li title="{{page.title}}"><a href="#">{{page.title|truncatechars:25}}</a></li>
+                    {% endfor %}
+                    </ol>
+                </div>                   
+            </div>
+        </div>
+    </div>  
+</main>
+
+{% endblock %}

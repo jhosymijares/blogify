@@ -1,0 +1,52 @@
+<style>
+     .no-link {
+        text-decoration: none;
+        color:black
+    }
+</style>
+<div class="container">      
+    <header class="blog-header lh-1 py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+          <div class="col-12 text-center">
+            <a class="blog-header-logo text-dark" href="/">BlogiFy</a>        
+            {% if is_authenticated == True%}
+                <div style="margin-top:10px">Bienvenido 
+                    <a href="/accounts/profile/" class="no-link"><b>{{greeting}}</b></a>
+                </div>                                     
+            {% endif %}       
+          </div>     
+        </div>
+    </header>
+    
+    <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex justify-content-between" style="float:right">
+            {% if is_authenticated == True%}
+                <a class="p-2 link-secondary" href="/accounts/logout">Cerrar Sesión</a>
+            {% else %}
+                <a class="p-2 link-secondary" href="/accounts/signup">Sign up</a>
+                <a class="p-2 link-secondary" href="/accounts/login">Iniciar Sesión</a>
+            {% endif %}  
+        </nav>         
+    </div>
+     
+    <nav class="nav d-flex xjustify-content-between">
+        {% if is_home == True %}
+            <a class="p-2 link-secondary" href="/">Inicio</a>
+        {% endif %} 
+        {% if is_page == True %}
+            <a class="p-2 link-secondary" href="/blogify/pages">Páginas</a>
+        {% endif %} 
+        {% if is_blog == True %}
+            <a class="p-2 link-secondary" href="/blogify/blogs">Blogs</a>
+        {% endif %} 
+        {% if is_authenticated == True and is_img == True %}
+            <a class="p-2 link-secondary" href="/blogify/images">Imágenes</a>
+        {% endif %}    
+        {% if is_authenticated == True and is_profile == True %}
+            <a class="p-2 link-secondary" href="/accounts/profile">Mi Perfil</a>
+        {% endif %}   
+        {% if is_authenticated == True and is_profile == True %}
+            <a class="p-2 link-secondary" href="/blogify/messenger/chat">Chat</a>
+        {% endif %}   
+    </nav>
+</div>

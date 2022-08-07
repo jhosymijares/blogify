@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}
+   BlogiFy Signup
+{% endblock %}
+
+{% block content %}    
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <a href="{% url 'BlogifyPageList' %}">ir atrás</a>
+          <!--   {{form.as_p}}            
+          {{form.username}}<br/>
+           {{form.email}}<br/>
+           {{form.first_name}}<br/>
+           {{form.last_name}}<br/>
+           {{form.groups}}<br/>
+           {{form.password1}}<br/>
+           {{form.password2}}<br/>-->
+          
+            <div class="form-floating">
+                <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username" class="form-control" placeholder="">
+               
+                <label for="id_username">Nombre de Usuario</label>
+                <p>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+            </div>
+ 
+            <div class="form-floating">
+                <input type="text" name="first_name" maxlength="150" id="id_first_name" class="form-control" placeholder="">
+                <label for="id_first_name">Nombre</label>
+                <p>Indique su primer nombre</p>
+            </div>
+
+            <div class="form-floating">
+                <input type="text" name="last_name" maxlength="150" id="id_last_name" class="form-control" placeholder="">
+                <label for="id_last_name">Apellido</label>
+                <p>Indique su apellido</p>
+            </div>
+
+            <div class="form-floating">
+                <input type="text" name="email" maxlength="150" id="id_email" class="form-control" placeholder="">
+                <label for="id_email">Email</label>
+                <p>Indique su email</p>
+            </div>
+
+            <div class="form-floating">
+                <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1" class="form-control" placeholder="">                
+                
+                <label for="id_password1">Contraseña</label>
+                <p>
+                    <ul>
+                        <li>Your password can’t be too similar to your other personal information.</li>
+                        <li>Your password must contain at least 8 characters.</li>
+                        <li>Your password can’t be a commonly used password.</li>
+                        <li>Your password can’t be entirely numeric.</li>
+                    </ul>
+                </p>
+            </div>
+
+            <div class="form-floating">
+                <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2" class="form-control" placeholder="">                
+                <label for="id_password2">Confirmación de la contraseña</label>
+                <p>Enter the same password as before, for verification.</p>
+            </div>
+
+        </div>        
+        <div style="text-align: center;">
+            <div>
+                <label>{{mensaje}}</label>
+            </div>            
+            <button type="submit">Registrar</button>
+        </div>        
+    </form>
+    <script>
+       // $(function(){
+           // $("input").addClass("form-control")
+     //   })
+    </script>
+{% endblock %}

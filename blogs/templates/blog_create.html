@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}
+   BlogiFy Blog Create
+{% endblock %}
+
+{% block content %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <script src="//cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>    
+    
+    <form method="POST">
+        {% csrf_token %}
+         <!--{{form.as_p}}-->
+         <div class="container">
+            <a href="{% url 'BlogifyBlogsList' %}">regresar</a>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingUserInputMessage" placeholder="Nombre de Usuario" name="title">
+                <label for="floatingUserInputMessage">Título</label>
+                <p></p>
+            </div>
+            <div class="form-floating">
+                <input type="hidden" class="form-control" id="image" name="image">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Seleccione una Imagen
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% for image in images %}  
+                        <li>
+                            <a href="#!" onclick='select_imge_blog("{{image.id}}","{{image.title}}")' >
+                            <img src="/media/{{image.image}}" width="100px" />{{image.title}}</a>
+                        </li> 
+                        {% endfor %}                      
+                    </ul>
+                </div>
+                <p></p>
+            </div>            
+            <div class="django-ckeditor-widget" data-field-id="id_body" style="display: inline-block;width:100%">
+                <textarea name="body" cols="40" rows="10" id="id_body" data-processed="0" data-config="{&quot;skin&quot;: &quot;moono-lisa&quot;, &quot;toolbar_Basic&quot;: [[&quot;Source&quot;, &quot;-&quot;, &quot;Bold&quot;, &quot;Italic&quot;]], &quot;toolbar_Full&quot;: [[&quot;Styles&quot;, &quot;Format&quot;, &quot;Bold&quot;, &quot;Italic&quot;, &quot;Underline&quot;, &quot;Strike&quot;, &quot;SpellChecker&quot;, &quot;Undo&quot;, &quot;Redo&quot;], [&quot;Link&quot;, &quot;Unlink&quot;, &quot;Anchor&quot;], [&quot;Image&quot;, &quot;Flash&quot;, &quot;Table&quot;, &quot;HorizontalRule&quot;], [&quot;TextColor&quot;, &quot;BGColor&quot;], [&quot;Smiley&quot;, &quot;SpecialChar&quot;], [&quot;Source&quot;]], &quot;toolbar&quot;: &quot;Full&quot;, &quot;height&quot;: 291, &quot;width&quot;: 835, &quot;filebrowserWindowWidth&quot;: 940, &quot;filebrowserWindowHeight&quot;: 725, &quot;language&quot;: &quot;en-us&quot;}" data-external-plugin-resources="[]" data-id="id_body" data-type="ckeditortype"></textarea>
+            </div>
+            <div style="text-align: center;">
+                <input type="submit" value="Enviar"/>
+            </div>           
+         </div>        
+    </form>
+    <script>
+        // instance, using default configuration.
+        CKEDITOR.replace('id_body',);
+       /* CKEDITOR.replace( 'id_body', {
+        height: '600px',
+        enterMode: CKEDITOR.ENTER_BR, 
+        toolbar:    
+        [   { name: 'document', groups: [ 'document', 'doctools' ], items: [ 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },
+            { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl' ] },        '/',
+            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
+            { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] }, { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
+            { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak', 'Iframe', 'Syntaxhighlight' ] }, '/',
+            { name: 'styles', items: [ 'Format', 'Font', 'FontSize' ] },
+            { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+            { name: 'others', groups: [ 'mode' ], items: [ 'Source', 'searchCode', 'autoFormat', 'CommentSelectedRange', 'UncommentSelectedRange', 'AutoComplete', '-', 'ShowBlocks' ] },
+            { name: 'tools', items: [ 'Maximize' ] },
+        ]});*/
+
+        function select_imge_blog(image_id,image_title){
+            $("#image").val(image_id)
+            $("#dropdownMenu1").text(image_title)
+        }
+
+        var escapeHtml = (text) => {
+            return text
+                .replaceAll('<p>', '')
+                .replaceAll('</p>', '')
+                .replaceAll('<strong>', '')
+                .replaceAll('</strong>', '')
+                .replaceAll('\n', ' ')
+
+                
+            //.replaceAll('&', '')
+            /*.replaceAll('<', '')
+            .replaceAll('>', '')
+            .replaceAll('"', '')
+            .replaceAll("'", '')
+            .replaceAll("/", '')
+            .replaceAll("p", '')*/
+        }
+        function smart_substr(str, len) {
+            var temp = str.substr(0, len);
+            if(temp.lastIndexOf('<') > temp.lastIndexOf('>')) {
+                temp = str.substr(0, 1 + str.indexOf('>', temp.lastIndexOf('<')));
+            }
+        }
+        var s= escapeHtml(CKEDITOR.instances.id_body.getData())
+        
+    </script>
+{% endblock %}

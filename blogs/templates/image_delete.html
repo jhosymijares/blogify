@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+   BlogiFy Image Delete
+{% endblock %}
+
+{% block content %}
+
+<main class="container">   
+    <div class="row g-5">
+        <div class="col-md-12">
+            <a href="{% url 'BlogifyImages' %}">regresar</a> 
+            <h3 class="pb-4 mb-4 fst-italic border-bottom">
+                ¿Eliminar {{image.title}}?
+            </h3>                                    
+            <article class="blog-post">                
+                <p>                    
+                    <img src="/media/{{image.image}}" style="width: 200px;"/>                    
+                </p>  
+                <p class="blog-post-meta" style="width:100%;font-size: 10px;">
+                    Fecha publicación imagen {{image.creation|date:'Y-m-d'}}                                                               
+                </p>                                                                                            
+                <hr>               
+            </article>  
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p}}
+                {% if linked_blog is not None or linked_profile is not None or linked_page is not None %}   
+                <div style="text-align: center;">
+                    <div>Esta imagen no puede ser eliminada porque esta vinculada con:</div> 
+                    {% for blog in linked_blog %}  
+                        <div>Blog: <b>{{blog.title}}</b></div>                         
+                    {% endfor %} 
+                    {% for page in linked_page %}
+                        <div>Page: <b>{{page.title}}</b></div>                        
+                    {% endfor %} 
+                    {% for profile in linked_profile %}  
+                        <div>Profile: <b>{{profile.user}}</b></div>                    
+                    {% endfor %}                     
+                </div>               
+                {% else %}
+                    <div style="text-align: center;">
+                        <input type="submit" value="Aceptar"/>
+                    </div> 
+                {% endif %}                                
+            </form>  
+            <br>                                                         
+        </div>         
+    </div>  
+</main>    
+    
+{% endblock %}
