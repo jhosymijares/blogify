@@ -1,41 +1,32 @@
 {% extends "base.html" %}
 
 {% block title %}
-   BlogiFy Page Update
+BlogiFy Page Update
 {% endblock %}
 
 {% block content %}
-<script src="//cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script> 
+<main class="container">
+    <a href="{% url 'BlogifyPageList' %}">Regresar</a>
+    <hr>
+    <h3 class="pb-4 mb-4 fst-italic">
+        ¿Desea eliminar:
+    </h3>
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row g-5">
+                <div class="col-md-12">
 
-    <main class="container">   
-        <a href="{% url 'BlogifyPageList' %}">Regresar</a>         
-            <div class="container">
-                <form method="POST">    
-                    {% csrf_token %} 
-                    <div class="row g-5">
-                        <div class="col-md-12">                            
-                
-                            <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                                {{page.title}}
-                            </h3>  
-
-                            <article class="blog-post">                
-                                {% autoescape off %}
-                                    {{page.content}}
-                                {% endautoescape %}                
-                                <hr>                
-                            </article>  
-
-                            <div style="text-align: center;">
-                                <input type="submit" value="Eliminar"/>
-                            </div>                                    
-                            <br>                                                         
-                        </div>         
-                    </div>  
-                </form>  
-            </div>        
-    </main>  
-    <script>
-        CKEDITOR.replace('id_content',);
-    </script>
+                    <h4 class="pb-4 mb-4 fst-italic border-bottom">
+                        {{page.title}}
+                    </h4>
+                    <div style="text-align: center;">
+                        <input type="submit" value="Aceptar" />
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
 {% endblock %}

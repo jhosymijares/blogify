@@ -11,20 +11,18 @@ BlogiFy Blog Detail
         <div class="col-md-12">
             <a href="{% url 'BlogifyBlogsList' %}">Regresar</a>
             <hr>
-            <article class="blog-post">
-                <div style="text-align:center">
-                    <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                        {{blog.title}}
-                    </h3>
-                </div>
-                <p class="blog-post-meta">{{blog.creation|date:'Y-m-d H:i '}} publicado por <b>{{blog.author}}</b></p>
+            <article class="blog-post">                
+                <h3>{{blog.title}}</h3>                
+                <div style="width:100%;font-size: 12px;">{{blog.creation|date:'Y-m-d'}}</div>
+                <div style="width:100%;font-size: 12px;">Publicado por <b>{{blog.author}}</b></div>
                 {% if blog.image.image is not None%}
-                <img src="/media/{{blog.image.image}}" title="{{blog.image.title}}" />
-                <p class="blog-post-meta" style="width:100%;font-size: 10px;">
-                    Fecha de publicación {{blog.image.creation|date:'Y-m-d'}}
-                </p>
+                <div style="text-align:center">
+                    <img src="/media/{{blog.image.image}}" title="{{blog.image.title}}" style="max-width: 410px;" />
+                    <p class="blog-post-meta" style="width:100%;font-size: 10px;">
+                        Fecha de publicación {{blog.image.creation|date:'Y-m-d'}}
+                    </p>
+                </div>
                 {% endif %}
-
                 {% autoescape off %}
                 {{blog.body}}
                 {% endautoescape %}

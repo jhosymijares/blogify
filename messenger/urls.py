@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
+from django.contrib.auth.decorators import login_required
 
 #Messenger´s Routes
 urlpatterns = [
-    path('chat/', views.messenger_chat, name = 'Chat'),
-    path('chat/<str:username>/',views.messenger_chat_user, name='ChatUser')
+    path('chat/', login_required(views.messenger_chat), name = 'Chat'),
+    path('chat/<str:username>/',login_required(views.messenger_chat_user), name='ChatUser')
 ]

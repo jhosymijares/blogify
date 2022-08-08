@@ -31,8 +31,9 @@ def blogify_init(request):
 
 def image_upload_view(request):
     context={}
-    set_user_context(request,context)
     image_template = loader.get_template("image.html")  
+    set_user_context(request,context)    
+    context["imageList"]=Image.objects.filter().order_by('-creation')
     """Process images uploaded by users"""
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
@@ -45,8 +46,7 @@ def image_upload_view(request):
     else:
         form = ImageForm()
 
-    context["form"]=form
-    context["imageList"]=Image.objects.all()
+    context["form"]=form    
     return HttpResponse(image_template.render(context))
 
 class ImageDelete(DeleteView):
@@ -199,7 +199,6 @@ class BlogDetail(DetailView):
         set_user_context(self.request,context)
         set_header_menu_comtext(context,False) 
         return context
-
 
 class BlogCreate(CreateView):
     model = Blog

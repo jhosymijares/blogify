@@ -1,60 +1,86 @@
 {% extends "base.html" %}
 
 {% block title %}
-   BlogiFy Image
+BlogiFy Image
 {% endblock %}
 
 {% block content %}
+<style>
+  label.label input[type="file"] {
+    position: absolute;
+    top: -1000px;
+  }
 
+  .label {
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px 50px;
+    background: cornflowerblue;
+    display: inline-block;
+    color: #fff;
+  }
+
+  .label:hover {
+    background: #cccccc;
+    color: #000000;
+  }
+
+  .label:active {
+    background: #9fa1a0;
+  }
+
+  .label:invalid+span {
+    color: #000000;
+  }
+
+  .label:valid+span {
+    color: #ffffff;
+  }
+</style>
 <div class="container">
   <a href="{% url 'BlogifyInit' %}">Regresar</a>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-     <!-- {{ form.as_p }}-->
-      <div class="form-floating">
-        <input type="text" class="form-control" id="floatingImageInputTitle" placeholder="Titulo de la Imagen" name="title">
-        <label for="floatingImageInputTitle">Título de la imagen</label>
-        <p></p>
-      </div>
-      <div class="form-floating">
-        <input type="file" class="form-control" id="floatingImageInputImage" placeholder="Imagen" name="image">
-        <label for="floatingImageInputImage"></label>
-        <p></p>
-      </div>
-
-      <div class="form-floating">
-        {% if img_obj %}
-          <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
-          <p>Imagen cargada exitósamente: <br><b>{{img_obj.title}}</b></p>
-        {% endif %}
-        <p></p>
-      </div>
-
-      <div style="text-align: center;">
-          <button type="submit">Subir</button>
-      </div>    
+    <div class="form-floating">
+      <input type="text" class="form-control" id="floatingImageInputTitle" placeholder="Titulo de la Imagen"
+        name="title">
+      <label for="floatingImageInputTitle">Título de la imagen</label>
+      <p></p>
+    </div>
+    <div>
+      <div>Por favor seleccione una imagen</div>
+      <label class="label">
+        <input type="file" class="form-control" name="image" required>
+        <span>Seleccione una imagen</span>
+      </label>
+    </div>
+    <div style="text-align: center;">
+      <input type="submit" value="Subir imagen" />
+      {% if img_obj %}
+      <p>Imagen cargada exitósamente</p>
+      {% endif %}
+    </div>
   </form>
 </div>
 
-<main class="container">      
+<main class="container">
   <div class="row g-5">
-      <div class="col-md-12">
-          <h3 class="pb-4 mb-4 fst-italic border-bottom">
-              Lista de imágenes
-          </h3>  
-          <ul>
-              {% for image in imageList %}            
-              <article>                                          
-                  <p>                    
-                    <img src="/media/{{image.image}}" style="width: 100px;"/>
-                    <label>{{image.title}}</label>
-                    <a href="{% url 'BlogifyImageDelete' image.id %}">Eliminar</a>
-                  </p>                                                                                  
-                  <hr>                
-              </article>
-              {% endfor %} 
-          </ul>
-      </div>         
-  </div>  
+    <div class="col-md-12">
+      <h3 class="pb-4 mb-4 fst-italic">
+        Listado de imágenes
+      </h3>
+      <ul>
+        {% for image in imageList %}
+        <article>
+          <p>
+            <img src="/media/{{image.image}}" style="width: 100px;" title="{{image.title}}" />
+            <a href="{% url 'BlogifyImageDelete' image.id %}">Eliminar</a>
+          </p>
+          <hr>
+        </article>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
 </main>
 {% endblock %}

@@ -16,9 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
-
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.decorators import login_required
 
 #Blogify Routes
 urlpatterns = [    
@@ -28,20 +28,20 @@ urlpatterns = [
     path('accounts/', include('accounts.urls'), name = 'Accounts'),
     path('blogify/messenger/', include('messenger.urls'), name = 'Messenger'),
 
-    path('blogify/images/', views.image_upload_view, name = "BlogifyImages"),
-    path(r'blogify/image/delete/(?P<pk>\d+)$', views.ImageDelete.as_view(), name= 'BlogifyImageDelete'),
+    path('blogify/images/', login_required(views.image_upload_view), name = "BlogifyImages"),
+    path(r'blogify/image/delete/(?P<pk>\d+)$', login_required(views.ImageDelete.as_view()), name= 'BlogifyImageDelete'),
 
     path('blogify/pages', views.PageListView.as_view(), name = "BlogifyPageList"),
-    path(r'blogify/page/(?P<pk>\d+)$', views.PageDetail.as_view(), name = 'BlogifyPageDetail'),
-    path(r'blogify/page/create/', views.PageCreate.as_view(), name = 'BlogifyPageCreate'),
-    path(r'blogify/page/update/(?P<pk>\d+)$', views.PageUpdate.as_view(), name= 'BlogifyPageUpdate'),
-    path(r'blogify/page/delete/(?P<pk>\d+)$', views.PageDelete.as_view(), name= 'BlogifyPageDelete'),
+    path(r'blogify/page/(?P<pk>\d+)$', login_required(views.PageDetail.as_view()), name = 'BlogifyPageDetail'),
+    path(r'blogify/page/create/', login_required(views.PageCreate.as_view()), name = 'BlogifyPageCreate'),
+    path(r'blogify/page/update/(?P<pk>\d+)$', login_required(views.PageUpdate.as_view()), name= 'BlogifyPageUpdate'),
+    path(r'blogify/page/delete/(?P<pk>\d+)$', login_required(views.PageDelete.as_view()), name= 'BlogifyPageDelete'),
     
     path('blogify/blogs', views.BlogListView.as_view(), name = "BlogifyBlogsList"),
-    path(r'blogify/blog/(?P<pk>\d+)$', views.BlogDetail.as_view(), name = 'BlogifyBlogsDetail'),
-    path(r'blogify/blog/create/', views.BlogCreate.as_view(), name = 'BlogifyBlogCreate'),
-    path(r'blogify/blog/update/(?P<pk>\d+)$', views.BlogUpdate.as_view(), name= 'BlogifyBlogUpdate'),
-    path(r'blogify/blog/delete/(?P<pk>\d+)$', views.BlogDelete.as_view(), name= 'BlogifyBlogDelete')
+    path(r'blogify/blog/(?P<pk>\d+)$', login_required(views.BlogDetail.as_view()), name = 'BlogifyBlogsDetail'),
+    path(r'blogify/blog/create/', login_required(views.BlogCreate.as_view()), name = 'BlogifyBlogCreate'),
+    path(r'blogify/blog/update/(?P<pk>\d+)$', login_required(views.BlogUpdate.as_view()), name= 'BlogifyBlogUpdate'),
+    path(r'blogify/blog/delete/(?P<pk>\d+)$', login_required(views.BlogDelete.as_view()), name= 'BlogifyBlogDelete')
 ]
 
 if settings.DEBUG:
