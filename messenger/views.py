@@ -47,7 +47,7 @@ def messenger_chat_user(request,username):
     set_user_context(request,context)
     set_header_menu_comtext(context,True)      
     context["user"]=request.user
-    users=User.objects.all().exclude(username=request.user.username)    
+    #users=User.objects.all().exclude(username=request.user.username)    
     chats = Chat.objects.filter(
         Q(sender=request.user.username) & Q(receiver=username)
       | Q(sender=username) & Q(receiver=request.user.username)
@@ -65,16 +65,16 @@ def messenger_chat_user(request,username):
     for user in User.objects.all().filter(username=username):       
         receiver.append({
             "username":user.username,
-            "full_name": f"{user.first_name}  {user.last_name}",
+            "full_name": f"{user.first_name} {user.last_name}",
             "profile":Profile.objects.filter(user__username=user.username).first()
         }) 
-    context["receiver"]=User.objects.filter(username=username)
+    context["receiver"]=receiver[0]
 
     usuario=[] 
     for user in User.objects.all().exclude(username=request.user.username):       
         usuario.append({
             "username":user.username,
-            "full_name": f"{user.first_name}  {user.last_name}",
+            "full_name": f"{user.first_name} {user.last_name}",
             "profile":Profile.objects.filter(user__username=user.username).first()
         }) 
              

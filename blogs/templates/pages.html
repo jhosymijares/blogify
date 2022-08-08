@@ -35,7 +35,7 @@ BlogiFy Page
                     {% endautoescape %}
 
                     <div>
-                        {% if is_authenticated == True and user.username == 'root' %}
+                        {% if is_authenticated == True %}
                             <a href="{% url 'BlogifyPageDetail' page.id%}">Leer más</a>  
                         {% endif %}                                                                      
                         {% if is_authenticated == True and user.username == 'root' %}

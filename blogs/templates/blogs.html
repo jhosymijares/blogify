@@ -34,10 +34,10 @@ BlogiFy Blogs
                     {% endautoescape %}
                     <div>
                         {% if is_authenticated == True and user.username == 'root' %}
-                        <a href="{% url 'BlogifyBlogsDetail' blog.id %}">Leer más</a>
+                        <a href="{% url 'BlogifyBlogsDetail' blog.id %}">Leer más |</a>
                         {% endif %}
                         {% if blog.author == user.username %}
-                        <a href="{% url 'BlogifyBlogUpdate' blog.id %}">| Editar</a>
+                        <a href="{% url 'BlogifyBlogUpdate' blog.id %}">Editar</a>
                         <a href="{% url 'BlogifyBlogDelete' blog.id %}">| Eliminar</a>
                         {% endif %}
                     </div>

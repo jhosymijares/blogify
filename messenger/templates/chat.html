@@ -1,107 +1,113 @@
 {% extends "base.html" %}
 
 {% block title %}
-   BlogiFy Chat
+BlogiFy Chat
 {% endblock %}
 
 {% block content %}
 
-    <style>
-        #chat3 .form-control {
-        border-color: transparent;
-        }
+<style>
+  #chat3 .form-control {
+    border-color: transparent;
+  }
 
-        #chat3 .form-control:focus {
-        border-color: transparent;
-        box-shadow: inset 0px 0px 0px 1px transparent;
-        }
+  #chat3 .form-control:focus {
+    border-color: transparent;
+    box-shadow: inset 0px 0px 0px 1px transparent;
+  }
 
-        .badge-dot {
-        border-radius: 50%;
-        height: 10px;
-        width: 10px;
-        margin-left: 2.9rem;
-        margin-top: -.75rem;
-        }
-    </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <section style="background-color: #ffffff;">
-        <div class="container py-5">
-      
-          <div class="row">
-            <div class="col-md-12">
-      
-              <div class="card" id="chat3" style="border-radius: 15px;">
-                <div class="card-body">
-      
-                  <div class="row">
-                    <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0" style="overflow:auto">
-      
-                      <div class="p-3">                         
-                        <div data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px">
-                          <ul class="list-unstyled mb-0">
-                            {% for user in users %}                            
-                            <li class="p-2 border-bottom">
-                              <a href="/blogify/messenger/chat/{{user.username}}" class="d-flex justify-content-between">
-                                <div class="d-flex flex-row">
-                                  <div>                                   
-                                      {% if user.profile.image.image is not None %}
-                                        <img src="/media/{{user.profile.image.image}}" 
-                                             alt="avatar" class="d-flex align-self-center me-3" width="60"/>                                        
-                                      {%else%}
-                                        <img src="http://lofrev.net/wp-content/photos/2017/03/user_blue_logo.png"
-                                             alt="avatar" class="d-flex align-self-center me-3" width="60"/>
-                                     {% endif %} 
-                                    <span class="badge bg-success badge-dot"></span>
-                                  </div>
-                                  <div class="pt-1">                                                                        
-                                    <p class="fw-bold mb-0">{{user.full_name}}</p>
-                                  </div>
-                                </div>                               
-                              </a>
-                            </li>  
-                            {% endfor %}                                                      
-                          </ul>
-                        </div>      
-                      </div>      
-                    </div>
-      
-                    <div class="col-md-6 col-lg-7 col-xl-8">
-                      <label>Chateando con <b>{{receiver.first_name}}</b></label>
-                      <div id="dvmessage" class="pt-3 pe-3" data-mdb-perfect-scrollbar="true"
-                        style="position: relative; height: 400px;overflow: auto;">                        
-                      </div>
-                      <form method="POST">
-                            <div class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">
-                                    <img src="http://lofrev.net/wp-content/photos/2017/03/user_blue_logo.png"
-                                    alt="avatar 3" style="width: 40px; height: 100%;">
-                                    <input type="text" class="form-control form-control-lg" id="exampleFormControlInput2"
-                                        placeholder="Escribe tu mensaje" name="text">
-                                    <input type="submit" value="Enviar"/>
+  .badge-dot {
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin-left: 2.9rem;
+    margin-top: -.75rem;
+  }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<section style="background-color: #ffffff;">
+  <div class="container py-5">
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card" id="chat3" style="border-radius: 15px;">
+          <div class="card-body">
+
+            <div class="row">
+              <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0" style="overflow:auto">
+
+                <div class="p-3">
+                  <div data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px">
+                    Lista de contactos
+                    <ul class="list-unstyled mb-0">
+                      {% for user in users %}
+                      <li class="p-2 border-bottom">
+                        <a href="/blogify/messenger/chat/{{user.username}}" class="d-flex justify-content-between">
+                          <div class="d-flex flex-row">
+                            <div>
+                              {% if user.profile.image.image is not None %}
+                              <img src="/media/{{user.profile.image.image}}" alt="avatar"
+                                class="d-flex align-self-center me-3" width="60" />
+                              {%else%}
+                              <img src="http://lofrev.net/wp-content/photos/2017/03/user_blue_logo.png" alt="avatar"
+                                class="d-flex align-self-center me-3" width="60" />
+                              {% endif %}
+                              <span class="badge bg-success badge-dot"></span>
                             </div>
-                      </form>                      
-                    </div>
+                            <div class="pt-1">
+                              <p class="fw-bold mb-0">{{user.full_name}}</p>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      {% endfor %}
+                    </ul>
                   </div>
                 </div>
+              </div>
+              <div class="col-md-6 col-lg-7 col-xl-8">
+                {% if receiver is not None %}
+                  {% if receiver.full_name|length > 0 %}
+                  <label>Chatear con <b>{{receiver.full_name}}</b></label>
+                  {% else %}
+                  <label>Chatear con <b>{{receiver.username}}</b></label>
+                  {% endif %}
+                {% endif %}
+                <div id="dvmessage" class="pt-3 pe-3" data-mdb-perfect-scrollbar="true"
+                  style="position: relative; height: 400px;overflow: auto;">
+                </div>
+                <form method="POST">
+                  <div class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">
+                    <img src="http://lofrev.net/wp-content/photos/2017/03/user_blue_logo.png" alt="avatar 3"
+                      style="width: 40px; height: 100%;">
+                    <input type="text" class="form-control form-control-lg" id="exampleFormControlInput2"
+                      placeholder="Escribe tu mensaje" name="text">
+                    <input type="submit" value="Enviar" />
+                  </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
-      </section>
-      <script>
-        $(function(){          
-            if("{{firstime}}"==="False"){
-                const loadBla=(function(){
-                  $("#dvmessage").load(window.location.href+"?param=just-chat",function(){
-                    $("#dvmessage").scrollTop(20000);
-                    $("#dvmessage").parent().height()
-                  });
-                })
-                loadBla()                                              
-                window.setInterval(function(){
-                  loadBla()
-                }, 5000);  
-            }                                  
-        })
-      </script>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  $(function () {
+    if ("{{firstime}}" === "False") {
+      const refresChat = (function () {
+        $("#dvmessage").load(window.location.href + "?param=just-chat", function () {
+          $(this).scrollTop(20000);
+          $(this).parent().height()
+        });
+      })
+      refresChat()
+      window.setInterval(function () {
+        refresChat()
+      }, 5000);
+    }
+  })
+</script>
 {% endblock %}
