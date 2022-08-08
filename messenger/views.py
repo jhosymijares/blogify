@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-# To decorator
-from django.contrib.auth.decorators import login_required
-# To load templates
 from django.template import loader
 from django.contrib.auth.models import User
 from messenger.models import Chat
 from django.db.models import Q
 from accounts.models import Profile
 
+"""
+    Messenger´s Views
+"""
 def set_user_context(request,context):
     context["is_authenticated"] = request.user.is_authenticated
     if hasattr(request.user, 'first_name') and request.user.first_name!="":
@@ -21,8 +21,6 @@ def set_header_menu_comtext(context,option):
     context["is_blog"] = option
     context["is_img"] = option
     context["is_profile"] = option  
-
-#Messenger´s Views
 
 def messenger_chat(request):
     context={}
@@ -40,7 +38,6 @@ def messenger_chat(request):
     chat_template = loader.get_template("chat.html")
     context["firstime"]=True
     return HttpResponse(chat_template.render(context))
-
 
 def messenger_chat_user(request,username):
     context={}
@@ -80,7 +77,7 @@ def messenger_chat_user(request,username):
              
     context["users"]=usuario
 
-    #validar mensajes
+    #validate messages
     if request.method == 'POST':
         if request.POST.get("text") is not None:  
             Chat(sender = request.user,receiver=username,text=request.POST.get("text"),status="Enviado").save() 
@@ -93,5 +90,3 @@ def messenger_chat_user(request,username):
     context["firstime"]=False
     chat_template = loader.get_template("chat.html")
     return HttpResponse(chat_template.render(context))
-
-    

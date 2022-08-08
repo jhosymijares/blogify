@@ -12,7 +12,9 @@ from blogs.models import Image
 from blogs.models import ImageForm
 from django.db.models import ProtectedError
 
-#Blogify Views
+"""
+    Blogify Views
+"""
 def set_user_context(request,context):
     context["is_authenticated"] = request.user.is_authenticated
     if hasattr(request.user, 'first_name') and request.user.first_name!="":
@@ -28,6 +30,22 @@ def set_header_menu_comtext(context,option):
     
 def blogify_init(request):
     return redirect('/blogify')
+
+def blogify_home(request):
+    context={}
+    set_user_context(request,context)
+    home_template = loader.get_template("home.html")    
+
+    profiles = Profile.objects.filter(pk=request.user.id)
+    if profiles.exists() is True and profiles.first().description != "":
+        context["description"] = profiles.first().description
+        
+    context["blogs"] = Blog.objects.all().order_by('-creation', '-id')
+    context["pages"] = Page.objects.all().order_by('-id').values()   
+
+    set_header_menu_comtext(context,True)
+
+    return HttpResponse(home_template.render(context))    
 
 def image_upload_view(request):
     context={}
@@ -83,22 +101,6 @@ class ImageDelete(DeleteView):
 
         template = loader.get_template("image_delete.html")
         return HttpResponse(template.render(context))
-
-def blogify_home(request):
-    context={}
-    set_user_context(request,context)
-    home_template = loader.get_template("home.html")    
-
-    profiles = Profile.objects.filter(pk=request.user.id)
-    if profiles.exists() is True and profiles.first().description != "":
-        context["description"] = profiles.first().description
-        
-    context["blogs"] = Blog.objects.all().order_by('-creation', '-id')
-    context["pages"] = Page.objects.all().order_by('-id').values()   
-
-    set_header_menu_comtext(context,True)
-
-    return HttpResponse(home_template.render(context))
 
 class PageListView(ListView):
     model = Page

@@ -4,7 +4,6 @@ from django.template import loader
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from accounts.models import Profile
@@ -12,7 +11,9 @@ from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
 from blogs.models import Image
 
-#Accounts Views
+"""
+    Accounts Views
+"""
 def set_user_context(request,context):
     context["is_authenticated"] = request.user.is_authenticated
     if hasattr(request.user, 'first_name') and request.user.first_name!="":
@@ -63,7 +64,6 @@ def account_login(request):
         "form": AuthenticationForm()
     }))
 
-@login_required(redirect_field_name='next', login_url='/accounts/login')
 def account_profile(request):
     context={}
     set_user_context(request,context)
@@ -98,7 +98,6 @@ def account_profile(request):
     context["images"]=Image.objects.all()
 
     return HttpResponse(profile_template.render(context))
-
 class UpdatePassword(PasswordChangeView):
     form_class = PasswordChangeForm
     success_url = '/accounts/profile/'
@@ -136,4 +135,3 @@ def account_signup(request):
     return HttpResponse(signup_template.render({
         "form": UserCreationForm()
     }))
-
