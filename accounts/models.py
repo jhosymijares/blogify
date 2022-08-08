@@ -1,12 +1,8 @@
 from django.db import models
-
-# Create your models here.
-# Account models
-
 from django.contrib.auth.models import User
-
 from blogs.models import Image
 
+"""Blogify Accounts Models"""
 class Profile(models.Model):    
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     description = models.CharField(max_length=400,null=True)

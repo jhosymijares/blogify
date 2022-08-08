@@ -1,8 +1,7 @@
 from django.db import models
-
-# Create your models here.
 from django.contrib.auth.models import User
 
+"""Blogify Messenger Models"""
 class Chat(models.Model):    
     sender = models.CharField(max_length=100)
     receiver = models.CharField(max_length=100)

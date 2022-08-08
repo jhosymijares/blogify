@@ -2,23 +2,20 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from django import forms
 
+"""Blogify Blogs Models"""
 class Image(models.Model):
     title = models.CharField(max_length=200)
-    #image = models.ImageField(upload_to='images')
-    #This will store the images in date archives like MEDIA_ROOT/users/2020/04/12
     image = models.ImageField(upload_to='users/%Y/%m/%d/', blank=True)
     creation = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
 
-class ImageForm(forms.ModelForm):
-    """Form for the image model"""
+class ImageForm(forms.ModelForm):    
     class Meta:
         model = Image
         fields = ('title', 'image')
 
-# Blogify Models
 class Blog(models.Model):
     title = models.CharField(max_length=200)
     subtitle = models.CharField(max_length=400)

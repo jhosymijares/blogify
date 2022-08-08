@@ -1,51 +1,52 @@
 {% extends "base.html" %}
 
 {% block title %}
-   BlogiFy Blogs
+BlogiFy Blogs
 {% endblock %}
 
 {% block content %}
 
-    <main class="container">      
-        <div class="row g-5">
-            <div class="col-md-12">
-                <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                    Lista de blogs
-                </h3>  
-                <a href="{% url 'BlogifyBlogCreate' %}">Crear nuevo blog</a>
-                <ul>
-                    {% for blog in blogs %}            
-                    <article class="blog-post">                        
-                        <h2 class="blog-post-title mb-1">{{blog.title}}</h2>                        
-                        <p class="blog-post-meta">{{blog.creation|date:'Y-m-d H:i '}} publicado por <b>{{blog.author}}</b></p>
-                                             
-                        {% if blog.image.image is not None%}
-                            <img src="/media/{{blog.image.image}}" title="{{blog.image.title}}"/>
-                            <p class="blog-post-meta" style="width:100%;font-size: 10px;">
-                                Fecha publicación imagen {{blog.image.creation|date:'Y-m-d'}}                                                               
-                            </p>                            
-                        {% endif %}
-                        
-                        {% autoescape off %}
-                            {{blog.subtitle|safe|linebreaksbr}}...
-                        {% endautoescape %}
-                        <div>
+<main class="container">
+    <div class="row g-5">
+        <div class="col-md-12">
+            <h3 class="pb-4 mb-4 fst-italic border-bottom">
+                Lista de blogs
+            </h3>
+            <a href="{% url 'BlogifyBlogCreate' %}">Crear nuevo blog</a>
+            <ul>
+                {% for blog in blogs %}
+                <article class="blog-post">
+                    <h2 class="blog-post-title mb-1">{{blog.title}}</h2>
+                    <p class="blog-post-meta">{{blog.creation|date:'Y-m-d H:i '}} publicado por <b>{{blog.author}}</b>
+                    </p>
+
+                    {% if blog.image.image is not None%}
+                    <img src="/media/{{blog.image.image}}" title="{{blog.image.title}}" />
+                    <p class="blog-post-meta" style="width:100%;font-size: 10px;">
+                        Fecha publicación imagen {{blog.image.creation|date:'Y-m-d'}}
+                    </p>
+                    {% endif %}
+
+                    {% autoescape off %}
+                    {{blog.subtitle|safe|linebreaksbr}}...
+                    {% endautoescape %}
+                    <div>
                         <a href="{% url 'BlogifyBlogsDetail' blog.id %}">Leer más...</a>
-                        </div>                  
-                        {% if blog.author == user.username %}
-                            <div>
-                                <a href="{% url 'BlogifyBlogUpdate' blog.id %}">Editar</a>                                 
-                            </div>   
-                            <div>
-                                <a href="{% url 'BlogifyBlogDelete' blog.id %}">Eliminar</a>   
-                            </div> 
-                        {% endif %}                                                                  
-                        <hr>                
-                    </article>
-                    {% endfor %} 
-                </ul>
-            </div>         
-        </div>  
-    </main>
+                    </div>
+                    {% if blog.author == user.username %}
+                    <div>
+                        <a href="{% url 'BlogifyBlogUpdate' blog.id %}">Editar</a>
+                    </div>
+                    <div>
+                        <a href="{% url 'BlogifyBlogDelete' blog.id %}">Eliminar</a>
+                    </div>
+                    {% endif %}
+                    <hr>
+                </article>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</main>
 
 {% endblock %}

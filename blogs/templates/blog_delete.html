@@ -1,35 +1,32 @@
 {% extends "base.html" %}
 
 {% block title %}
-   BlogiFy Blog Delete
+BlogiFy Blog Delete
 {% endblock %}
 
 {% block content %}
 
-<main class="container">   
+<main class="container">
     <div class="row g-5">
         <div class="col-md-12">
-            <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                {{blog.title}}
-            </h3>  
-            <a href="{% url 'BlogifyBlogsList' %}">Regresar</a> 
-                      
-            <article class="blog-post">                
-                {% autoescape off %}
-                    {{blog.body}}
-                {% endautoescape %}                
-                <hr>                
-            </article>  
+            <a href="{% url 'BlogifyBlogsList' %}">Regresar</a>
+            <hr>
+            <h3 class="pb-4 mb-4 fst-italic">
+                ¿Desea eliminar:
+            </h3>
+            <h4 class="pb-4 mb-4 fst-italic border-bottom">
+                {{blog.title}}?
+            </h4>
             <form method="POST">
                 {% csrf_token %}
                 {{ form.as_p}}
                 <div style="text-align: center;">
-                    <input type="submit" value="Eliminar"/>
-                </div>                
-            </form>  
-            <br>                                                         
-        </div>         
-    </div>  
-</main>    
-    
+                    <input type="submit" value="Aceptar" />
+                </div>
+            </form>
+            <br>
+        </div>
+    </div>
+</main>
+
 {% endblock %}

@@ -1,52 +1,52 @@
 <style>
-     .no-link {
+    .no-link {
         text-decoration: none;
-        color:black
+        color: black
     }
 </style>
-<div class="container">      
+<div class="container">
     <header class="blog-header lh-1 py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
-          <div class="col-12 text-center">
-            <a class="blog-header-logo text-dark" href="/">Blogify</a>        
-            {% if is_authenticated == True%}
-                <div style="margin-top:10px">Bienvenido a Blogify 
+            <div class="col-12 text-center">
+                <a class="blog-header-logo text-dark" href="/">Blogify</a>
+                {% if is_authenticated == True%}
+                <div style="margin-top:10px">Bienvenido a Blogify
                     <a href="/accounts/profile/" class="no-link"><b>{{greeting}}</b></a>
-                </div>                                     
-            {% endif %}       
-          </div>     
+                </div>
+                {% endif %}
+            </div>
         </div>
     </header>
-    
+
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between" style="float:right">
             {% if is_authenticated == True%}
-                <a class="p-2 link-secondary" href="/accounts/logout">Cerrar sesión</a>
+            <a class="p-2 link-secondary" href="/accounts/logout">Cerrar sesión</a>
             {% else %}
-                <a class="p-2 link-secondary" href="/accounts/signup">Regístrate</a>
-                <a class="p-2 link-secondary" href="/accounts/login">Iniciar sesión</a>
-            {% endif %}  
-        </nav>         
+            <a class="p-2 link-secondary" href="/accounts/signup">Regístrate</a>
+            <a class="p-2 link-secondary" href="/accounts/login">Iniciar sesión</a>
+            {% endif %}
+        </nav>
     </div>
-     
+
     <nav class="nav d-flex xjustify-content-between">
         {% if is_home == True %}
-            <a class="p-2 link-secondary" href="/">Inicio</a>
-        {% endif %} 
+        <a class="p-2 link-secondary" href="/">Inicio</a>
+        {% endif %}
         {% if is_authenticated == True and is_profile == True %}
         <a class="p-2 link-secondary" href="/accounts/profile">Mi perfil</a>
-        {% endif %}   
+        {% endif %}
         {% if is_authenticated == True and is_profile == True %}
-            <a class="p-2 link-secondary" href="/blogify/messenger/chat">Chat</a>
+        <a class="p-2 link-secondary" href="/blogify/messenger/chat">Chat</a>
         {% endif %}
         {% if is_authenticated == True and is_img == True %}
         <a class="p-2 link-secondary" href="/blogify/images">Imágenes</a>
-        {% endif %}    
+        {% endif %}
         {% if is_page == True %}
-            <a class="p-2 link-secondary" href="/blogify/pages">Páginas</a>
-        {% endif %} 
+        <a class="p-2 link-secondary" href="/blogify/pages">Páginas</a>
+        {% endif %}
         {% if is_blog == True %}
-            <a class="p-2 link-secondary" href="/blogify/blogs">Blogs</a>
-        {% endif %}    
+        <a class="p-2 link-secondary" href="/blogify/blogs">Blogs</a>
+        {% endif %}
     </nav>
 </div>

@@ -102,7 +102,7 @@ def account_profile(request):
 class UpdatePassword(PasswordChangeView):
     form_class = PasswordChangeForm
     success_url = '/accounts/profile/'
-    template_name = 'change-password.html'
+    template_name = 'resetpass.html'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
