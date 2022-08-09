@@ -9,9 +9,15 @@
         <div class="row flex-nowrap justify-content-between align-items-center">
             <div class="col-12 text-center">
                 <a class="blog-header-logo text-dark" href="/">Blogify</a>
-                {% if is_authenticated == True%}
-                <div style="margin-top:10px">Bienvenido a Blogify
-                    <a href="/accounts/profile/" class="no-link"><b>{{greeting}}</b></a>
+                {% if is_authenticated == True %}
+                <div style="margin-top:10px">
+                    Bienvenido
+                    <a href="/accounts/profile/" class="no-link">                         
+                        <b>{{greeting}}</b>
+                        {% if profile is not None%}
+                        <img src="/media/{{profile.image.image}}" width="40px"/>
+                        {% endif %}
+                    </a>                    
                 </div>
                 {% endif %}
             </div>

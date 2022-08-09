@@ -8,13 +8,11 @@ BlogiFy Profile
 <form action="" method="POST">
     {% csrf_token %}
     <div class="container">
-        <div>
-            <a href="{% url 'BlogifyPageList' %}">Regresar</a>
-        </div>
-        <div>
+        <div>            
+            <a href="{% url 'BlogifyPageList' %}">Regresar</a> | 
             <a href="{% url 'AccountChangePass' %}">Cambiar contraseña</a>
         </div>
-
+        <p></p>
         <div class="form-floating">
             <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username"
                 autofocus="" required="" id="id_username" class="form-control" placeholder="" value="{{user.username}}"
@@ -87,6 +85,7 @@ BlogiFy Profile
         </div>
         <input type="submit" value="Actualizar" />
     </div>
+    <p></p>
 </form>
 <script>
     if ("{{profile.image.id}}" !== "") {

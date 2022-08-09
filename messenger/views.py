@@ -15,6 +15,7 @@ def set_user_context(request,context):
         context["greeting"] = request.user.first_name
     else:
         context["greeting"] = request.user
+    context["profile"] = Profile.objects.filter(user__username=request.user.username).first()
 
 def set_header_menu_comtext(context,option):
     context["is_page"] = option
@@ -23,11 +24,11 @@ def set_header_menu_comtext(context,option):
     context["is_profile"] = option  
 
 def messenger_chat(request):
-    context={}
+    context = {}
     set_user_context(request,context)
     set_header_menu_comtext(context,True)
-    users=[]    
-    context["users"]=User.objects.all().exclude(username=request.user.username)
+    users = []    
+    context["users"] = User.objects.all().exclude(username=request.user.username)
     for user in User.objects.all().exclude(username=request.user.username):       
         users.append({
             "username":user.username,
@@ -43,21 +44,21 @@ def messenger_chat_user(request,username):
     context={}
     set_user_context(request,context)
     set_header_menu_comtext(context,True)      
-    context["user"]=request.user
-    #users=User.objects.all().exclude(username=request.user.username)    
+    context["user"] = request.user
+    
     chats = Chat.objects.filter(
         Q(sender=request.user.username) & Q(receiver=username)
       | Q(sender=username) & Q(receiver=request.user.username)
     )    
-    user_avatar=Profile.objects.filter(user__username=request.user.username).first()
-    receiver_avatar=Profile.objects.filter(user__username=username).first()
+    user_avatar = Profile.objects.filter(user__username=request.user.username).first()
+    receiver_avatar = Profile.objects.filter(user__username=username).first()
     for chat in chats:
         if chat.sender == request.user.username:     
             chat.avatar = user_avatar            
         else:
             chat.avatar = receiver_avatar         
 
-    context["chats"]=chats
+    context["chats"] = chats
     receiver=[]
     for user in User.objects.all().filter(username=username):       
         receiver.append({
@@ -77,7 +78,6 @@ def messenger_chat_user(request,username):
              
     context["users"]=usuario
 
-    #validate messages
     if request.method == 'POST':
         if request.POST.get("text") is not None:  
             Chat(sender = request.user,receiver=username,text=request.POST.get("text"),status="Enviado").save() 
@@ -87,6 +87,6 @@ def messenger_chat_user(request,username):
         context["firstime"]=False
         return HttpResponse(chat_template.render(context))
 
-    context["firstime"]=False
+    context["firstime"] = False
     chat_template = loader.get_template("chat.html")
     return HttpResponse(chat_template.render(context))

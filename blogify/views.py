@@ -24,6 +24,7 @@ def set_user_context(request, context):
         context["greeting"] = request.user.first_name
     else:
         context["greeting"] = request.user
+    context["profile"] = Profile.objects.filter(user__username=request.user.username).first()
 
 def set_header_menu_comtext(context, option):
     context["is_page"] = option

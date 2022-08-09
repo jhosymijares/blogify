@@ -9,6 +9,7 @@ BlogiFy Signup
     {% csrf_token %}
     <div class="container">
         <a href="{% url 'BlogifyPageList' %}">Regresar</a>
+        <p></p>
         <div class="form-floating">
             <input type="text" name="username" maxlength="20" autocapitalize="none" autocomplete="username" autofocus=""
                 required="" id="id_username" class="form-control" placeholder="">
@@ -63,6 +64,7 @@ BlogiFy Signup
             <label>{{mensaje}}</label>
         </div>
         <input type="submit" value="Registrar" />
+        <p></p>
     </div>
 </form>
 {% endblock %}

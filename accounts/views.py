@@ -20,6 +20,7 @@ def set_user_context(request,context):
         context["greeting"] = request.user.first_name
     else:
         context["greeting"] = request.user
+    context["profile"] = Profile.objects.filter(user__username=request.user.username).first()
 
 def account_init(request):
     if(request.user.is_authenticated):
