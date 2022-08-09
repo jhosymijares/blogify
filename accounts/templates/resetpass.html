@@ -14,13 +14,15 @@ Cambiar contraseña
         <div class="form-floating">
             <input type="password" name="old_password" maxlength="150" autocapitalize="none" autocomplete="username"
                 autofocus="" required="" id="id_username" class="form-control" placeholder="">
+                <i class="far fa-eye" id="toggle_old_password" style="cursor: pointer;margin-top: -38px;position: absolute;right: 12px;font-size: 20px;"></i>
             <label for="id_username">Contraseña actual</label>
+            
             <p class="StyleSubTitle">Por favor ingrese su contraseña actual</p>
         </div>
         <div class="form-floating">
             <input type="password" name="new_password1" maxlength="150" autocapitalize="none" autocomplete="username"
                 autofocus="" required="" id="id_username" class="form-control" placeholder="">
-
+            <i class="far fa-eye" id="toggle_new_password1" style="cursor: pointer;margin-top: -38px;position: absolute;right: 12px;font-size: 20px;"></i>
             <label for="id_username">Nueva contraseña</label>
             <div class="StyleSubTitle">Por favor registre su nueva contraseña considerando lo siguiente:</div>
             <div class="StyleSubTitle">- Su contraseña no puede contener información personal</div>
@@ -31,7 +33,7 @@ Cambiar contraseña
         <div class="form-floating">
             <input type="password" name="new_password2" maxlength="150" autocapitalize="none" autocomplete="username"
                 autofocus="" required="" id="id_username" class="form-control" placeholder="">
-
+                <i class="far fa-eye" id="toggle_new_password2" style="cursor: pointer;margin-top: -38px;position: absolute;right: 12px;font-size: 20px;"></i>
             <label for="id_username">Confirmar nueva contraseña</label>
             <p class="StyleSubTitle">Por favor confirme su nueva contraseña</p>
         </div>
@@ -44,4 +46,18 @@ Cambiar contraseña
         <p></p>
     </div>
 </form>
+<script>
+    $(function(){
+        $("input[type='password']").each(function(index,inputPassword){
+            var togglePassword=$("#toggle_"+$(inputPassword).attr("name"))
+            togglePassword.click(function (e) {
+                // toggle the type attribute
+                const type = inputPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+                inputPassword.setAttribute('type', type);
+                // toggle the eye slash icon
+                this.classList.toggle('fa-eye-slash');
+            });
+        })               
+    })
+  </script>
 {% endblock %}
