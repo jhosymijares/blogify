@@ -1,0 +1,1 @@
+web: waitress-serve --port=$PORT blogify.wsgi:application
