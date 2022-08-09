@@ -66,17 +66,15 @@ def account_login(request):
     }))
 
 def account_profile(request):
-    context={}
-    set_user_context(request,context)
+    context = {}
+    set_user_context(request, context)
     profile_template = loader.get_template("profile.html")
-    user=User.objects.get(pk=request.user.id)  
+    user = User.objects.get(pk=request.user.id)  
     context["user"] = user
     
     if Profile.objects.filter(pk=request.user.id).exists() is False:
-        Profile(user = user,description="",url_site="").save()
-    
-    profile=Profile.objects.get(pk=request.user.id)
-    context["profile"] = profile
+        Profile(user = user,description="",url_site="").save()    
+    profile = Profile.objects.get(pk = request.user.id)
     
     if request.method == 'POST':
         if request.POST.get("first_name") is not None:            
@@ -94,7 +92,7 @@ def account_profile(request):
 
         user.save()        
         profile.save()
-        context["message"]="El perfil ha sido Actualizado"
+        context["message"]="Tu perfil ha sido actualizado"
     
     context["images"]=Image.objects.all()
 
@@ -126,7 +124,7 @@ def account_signup(request):
             new_user.save()
            
             return HttpResponse(signup_template.render({
-                "mensaje": f"{username} Creado"
+                "mensaje": f"Registro exitoso usuario: {username}"
             }))
         else:
             return HttpResponse(signup_template.render({

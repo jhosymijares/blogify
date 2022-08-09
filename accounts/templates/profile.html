@@ -13,6 +13,9 @@ Mi perfil
             <a href="{% url 'AccountChangePass' %}">Cambiar contraseña</a>
         </div>
         <p></p>
+        <div style="color:green;text-align: center;margin: 19px;">
+            <label>{{message}}</label>
+        </div>
         <div class="form-floating">
             <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username"
                 autofocus="" required="" id="id_username" class="form-control" placeholder="" value="{{user.username}}"
@@ -44,7 +47,7 @@ Mi perfil
         </div>
 
         <div class="form-floating">
-            <textarea name="description" id="id_description" class="form-control" style="height: 180px;"
+            <textarea name="description" id="id_description" class="form-control" style="height: 80px;"
                 placeholder="">{{profile.description}}</textarea>
             <label for="id_description">Acerca de mí</label>
             <p></p>
@@ -80,9 +83,6 @@ Mi perfil
 
     </div>
     <div style="text-align: center;">
-        <div>
-            <label>{{mensaje}}</label>
-        </div>
         <input type="submit" value="Actualizar" />
     </div>
     <p></p>

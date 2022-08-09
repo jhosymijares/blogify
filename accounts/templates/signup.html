@@ -10,61 +10,76 @@ Regístrate
     <div class="container">
         <a href="{% url 'BlogifyPageList' %}">Regresar</a>
         <p></p>
+        <div style="color:green;text-align: center;margin: 19px;">
+            <label>{{mensaje}}</label>
+        </div>
         <div class="form-floating">
             <input type="text" name="username" maxlength="20" autocapitalize="none" autocomplete="username" autofocus=""
                 required="" id="id_username" class="form-control" placeholder="">
 
             <label for="id_username">Nombre de usuario</label>
-            <p>Complete su nombre de usuario, logitud máxima 20 caracteres. Letras, números y caracteres especiales
-                @/./+/-/_</p>
+            <p class="StyleSubTitle">Complete su nombre de usuario, longitud máxima 20 caracteres. Admite letras, números y caracteres especiales
+                @.+-_</p>
         </div>
 
         <div class="form-floating">
             <input type="text" name="first_name" maxlength="150" id="id_first_name" class="form-control" placeholder="">
             <label for="id_first_name">Nombres</label>
-            <p>Ingrese sus nombres</p>
+            <p class="StyleSubTitle">Ingrese sus nombres</p>
         </div>
 
         <div class="form-floating">
             <input type="text" name="last_name" maxlength="150" id="id_last_name" class="form-control" placeholder="">
             <label for="id_last_name">Apellidos</label>
-            <p>Ingrese sus apellidos</p>
+            <p class="StyleSubTitle">Ingrese sus apellidos</p>
         </div>
 
         <div class="form-floating">
             <input type="text" name="email" maxlength="150" id="id_email" class="form-control" placeholder="">
             <label for="id_email">Email</label>
-            <p>Ingrese su mail</p>
+            <p class="StyleSubTitle">Ingrese su email</p>
         </div>
 
         <div class="form-floating">
             <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1"
                 class="form-control" placeholder="">
-
-            <label for="id_password1">Ingrese su contraseña</label>
+                <i class="far fa-eye" id="toggle_password1" style="cursor: pointer;margin-top: -38px;position: absolute;right: 12px;font-size: 20px;"></i>
+            <label for="id_password1">Ingrese una contraseña</label>
             <p>
-            <ul>
-                <li>Su contraseña no puede contener información personal</li>
-                <li>Su contraseña debe contener al menos 8 caracteres</li>
-                <li>Su contraseña no puede ser completamente numérica</li>
-            </ul>
+                <ul>
+                    <li class="StyleSubTitle">Su contraseña no puede contener información personal</li>
+                    <li class="StyleSubTitle">Su contraseña debe contener al menos 8 caracteres</li>
+                    <li class="StyleSubTitle">Su contraseña no puede ser completamente numérica</li>
+                </ul>
             </p>
         </div>
 
         <div class="form-floating">
             <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2"
                 class="form-control" placeholder="">
-            <label for="id_password2">Confirmación su contraseña</label>
-            <p>Ingrese nuevamente su contraseña para confirmar.</p>
+                <i class="far fa-eye" id="toggle_password2" style="cursor: pointer;margin-top: -38px;position: absolute;right: 12px;font-size: 20px;"></i>
+            <label for="id_password2">Confirme su contraseña</label>
+            <p class="StyleSubTitle">Ingrese nuevamente su contraseña para confirmar</p>
         </div>
 
     </div>
-    <div style="text-align: center;">
-        <div>
-            <label>{{mensaje}}</label>
-        </div>
+    <div style="text-align: center;">        
         <input type="submit" value="Registrar" />
         <p></p>
     </div>
 </form>
+<script>
+    $(function(){
+        $("input[type='password']").each(function(index,inputPassword){
+            var togglePassword=$("#toggle_"+$(inputPassword).attr("name"))
+            togglePassword.click(function (e) {
+                // toggle the type attribute
+                const type = inputPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+                inputPassword.setAttribute('type', type);
+                // toggle the eye slash icon
+                this.classList.toggle('fa-eye-slash');
+            });
+        })               
+    })
+</script>
 {% endblock %}

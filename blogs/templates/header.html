@@ -7,10 +7,11 @@
 <div class="container">
     <header class="blog-header lh-1 py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
-            <div class="col-12 text-center">
-                <a class="blog-header-logo text-dark" href="/">Blogify</a>
+            <div class="col-12">
+                <img class="mb-4" src="/media/blogify.png"  height="30">
+                <a class="blog-header-logo text-dark" href="/" style="font-size: 35px;">Blogify</a>
                 {% if is_authenticated == True %}
-                <div style="margin-top:10px">
+                <div style="margin-top:10px;text-align: right;">
                     Bienvenido
                     <a href="/accounts/profile/" class="no-link">                         
                         <b>{{greeting}}</b>
