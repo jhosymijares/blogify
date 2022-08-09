@@ -68,24 +68,30 @@ BlogiFy Chat
               </div>
               <div class="col-md-6 col-lg-7 col-xl-8">
                 {% if receiver is not None %}
-                  {% if receiver.full_name|length > 0 %}
-                  <label>Chatear con <b>{{receiver.full_name}}</b></label>
-                  {% else %}
-                  <label>Chatear con <b>{{receiver.username}}</b></label>
-                  {% endif %}
+                {% if receiver.full_name|length > 0 %}
+                <label>Chatear con <b>{{receiver.full_name}}</b></label>
+                {% else %}
+                <label>Chatear con <b>{{receiver.username}}</b></label>
                 {% endif %}
+
                 <div id="dvmessage" class="pt-3 pe-3" data-mdb-perfect-scrollbar="true"
                   style="position: relative; height: 400px;overflow: auto;">
                 </div>
                 <form method="POST">
                   <div class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">
-                    <img src="http://lofrev.net/wp-content/photos/2017/03/user_blue_logo.png" alt="avatar 3"
-                      style="width: 40px; height: 100%;">
+                    {% if user.profile.image.image is not None %}
+                    <img src="/media/{{user.profile.image.image}}" alt="avatar" class="d-flex align-self-center me-3"
+                      width="60" />
+                    {%else%}
+                    <img src="http://lofrev.net/wp-content/photos/2017/03/user_blue_logo.png" alt="avatar"
+                      class="d-flex align-self-center me-3" style="width: 40px; height: 100%;" />
+                    {% endif %}
                     <input type="text" class="form-control form-control-lg" id="exampleFormControlInput2"
                       placeholder="Escribe tu mensaje" name="text">
                     <input type="submit" value="Enviar" />
                   </div>
                 </form>
+                {% endif %}
               </div>
             </div>
           </div>
