@@ -9,8 +9,14 @@ Crear un nuevo blog
 
 <form method="POST">
     {% csrf_token %}
-    <div class="container">
+    <div class="container">        
         <a href="{% url 'BlogifyBlogsList' %}">Regresar</a>
+        <p></p>
+        <div>
+            <h3 class="pb-4 mb-4 fst-italic border-bottom">
+                Crear nuevo blog
+            </h3>
+        </div>
         <div class="form-floating">
             <input type="text" class="form-control" id="floatingUserInputMessage" placeholder="Nombre de Usuario"
                 name="title">
@@ -33,7 +39,7 @@ Crear un nuevo blog
                     </li>
                     {% endfor %}
                 </ul>
-                <p>Todas las imágenes deben estar subidas previamente en la sección <a
+                <p class=StyleSubTitle>Todas las imágenes deben estar subidas previamente en la sección <a
                         href="{% url 'BlogifyImages' %}">Imágenes</a></p>
             </div>
             <p></p>
@@ -43,9 +49,11 @@ Crear un nuevo blog
                 data-config="{&quot;skin&quot;: &quot;moono-lisa&quot;, &quot;toolbar_Basic&quot;: [[&quot;Source&quot;, &quot;-&quot;, &quot;Bold&quot;, &quot;Italic&quot;]], &quot;toolbar_Full&quot;: [[&quot;Styles&quot;, &quot;Format&quot;, &quot;Bold&quot;, &quot;Italic&quot;, &quot;Underline&quot;, &quot;Strike&quot;, &quot;SpellChecker&quot;, &quot;Undo&quot;, &quot;Redo&quot;], [&quot;Link&quot;, &quot;Unlink&quot;, &quot;Anchor&quot;], [&quot;Image&quot;, &quot;Flash&quot;, &quot;Table&quot;, &quot;HorizontalRule&quot;], [&quot;TextColor&quot;, &quot;BGColor&quot;], [&quot;Smiley&quot;, &quot;SpecialChar&quot;], [&quot;Source&quot;]], &quot;toolbar&quot;: &quot;Full&quot;, &quot;height&quot;: 291, &quot;width&quot;: 835, &quot;filebrowserWindowWidth&quot;: 940, &quot;filebrowserWindowHeight&quot;: 725, &quot;language&quot;: &quot;en-us&quot;}"
                 data-external-plugin-resources="[]" data-id="id_body" data-type="ckeditortype"></textarea>
         </div>
+        <p></p>
         <div style="text-align: center;">
             <input type="submit" value="Crear" />
         </div>
+        <p></p>
     </div>
 </form>
 <script>

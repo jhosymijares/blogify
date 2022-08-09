@@ -24,14 +24,18 @@ Mensajería chat
     margin-top: -.75rem;
   }
 </style>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <section style="background-color: #ffffff;">
-  <div class="container py-5">
-
+  <div class="container">
+    <p></p>
+    <div>
+        <h3 class="pb-4 mb-4 fst-italic border-bottom">
+            Mi chat
+        </h3>
+    </div>
     <div class="row">
       <div class="col-md-12">
 
-        <div class="card" id="chat3" style="border-radius: 15px;">
+        <div class="card" id="chat3" style="border-radius: 12px">
           <div class="card-body">
 
             <div class="row">
@@ -39,7 +43,9 @@ Mensajería chat
 
                 <div class="p-3">
                   <div data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px">
-                    Lista de contactos
+                    <div style="font-size:13px;color:#144693">
+                      Seleccione el contacto para iniciar un chat
+                    </div>
                     <ul class="list-unstyled mb-0">
                       {% for user in users %}
                       <li class="p-2 border-bottom">
@@ -69,9 +75,10 @@ Mensajería chat
               <div class="col-md-6 col-lg-7 col-xl-8">
                 {% if receiver is not None %}
                 {% if receiver.full_name|length > 0 %}
-                <label>Chatear con <b>{{receiver.full_name}}</b></label>
+                <br/>
+                <label>Chat con <b>{{receiver.full_name}}</b></label>
                 {% else %}
-                <label>Chatear con <b>{{receiver.username}}</b></label>
+                <label>Chat con <b>{{receiver.username}}</b></label>
                 {% endif %}
 
                 <div id="dvmessage" class="pt-3 pe-3" data-mdb-perfect-scrollbar="true"
