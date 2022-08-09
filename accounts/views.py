@@ -14,7 +14,7 @@ from blogs.models import Image
 """
     Accounts Views
 """
-def set_user_context(request,context):
+def set_user_context(request, context):
     context["is_authenticated"] = request.user.is_authenticated
     if hasattr(request.user, 'first_name') and request.user.first_name!="":
         context["greeting"] = request.user.first_name
