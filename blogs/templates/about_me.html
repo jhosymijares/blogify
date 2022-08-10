@@ -29,7 +29,7 @@ Listado de páginas
                     {% endautoescape %}
 
                     <div>
-                        {% if is_authenticated == True %}
+                        {% if is_authenticated == True and user.username == "user.admin" %}
                         <a href="{% url 'AboutMeUpdate' page.id %}">Editar</a>
                         <a href="{% url 'AboutMeDelete' page.id %}">| Eliminar</a>
                         {% endif %}
