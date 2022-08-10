@@ -24,25 +24,17 @@ Listado de blogs
                 {% for blog in blogs %}
                 <article class="blog-post">
                     <h2 class="blog-post-title mb-1">{{blog.title}}</h2>
-                    <p class="blog-post-meta">{{blog.creation|date:'Y-m-d H:i '}} publicado por <b>{{blog.author}}</b>
+                    <p class="blog-post-meta" style="font-size: 11px";>{{blog.creation|date:'Y-m-d H:i '}} publicado por <b>{{blog.author}}</b>
                     </p>
-
-                    {% if blog.image.image is not None%}
-                    <img src="/media/{{blog.image.image}}" title="{{blog.image.title}}" style="max-width: 410px;" />
-                    <p class="blog-post-meta" style="width:100%;font-size: 10px;">
-                        Fecha publicación imagen {{blog.image.creation|date:'Y-m-d'}}
-                    </p>
-                    {% endif %}
-
                     {% autoescape off %}
-                    {{blog.subtitle|safe|linebreaksbr}}...
+                    {{blog.subtitle|safe}}...
                     {% endautoescape %}
                     <div>
                         {% if is_authenticated == True %}
-                        <a href="{% url 'BlogDetail' blog.id %}">Leer más |</a>
+                        <a href="{% url 'BlogDetail' blog.id %}">Leer más </a>
                         {% endif %}
                         {% if blog.author == user.username %}
-                        <a href="{% url 'BlogUpdate' blog.id %}">Editar</a>
+                        <a href="{% url 'BlogUpdate' blog.id %}">| Editar </a>
                         <a href="{% url 'BlogDelete' blog.id %}">| Eliminar</a>
                         {% endif %}
                     </div>

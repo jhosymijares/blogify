@@ -15,12 +15,12 @@ Listado de páginas
                 {% for page in pages %}
                 <article class="blog-post">
                     <h2 class="blog-post-title mb-1">{{page.title}}</h2>
-
+                    <p></p>
                     {% if page.image.image is not None%}
-                    <div style="text-align:center">
-                        <img src="/media/{{page.image.image}}" title="{{page.image.title}}" style="max-width: 410px;" />
-                        <p class="blog-post-meta" style="width:100%;font-size: 10px;">
-                            Fecha de publicación {{page.image.creation|date:'Y-m-d'}}
+                    <div>
+                        <img src="/media/{{page.image.image}}" title="{{page.image.title}}" style="max-width: 200px;" />
+                        <p class="blog-post-meta" style="width:100%;font-size: 11px;">
+                            Imagen publicada el {{page.image.creation|date:'Y-m-d'}}
                         </p>
                     </div>
                     {% endif %}
@@ -29,7 +29,7 @@ Listado de páginas
                     {% endautoescape %}
 
                     <div>
-                        {% if is_authenticated == True and user.username == 'user.admin' %}
+                        {% if is_authenticated == True %}
                         <a href="{% url 'AboutMeUpdate' page.id %}">Editar</a>
                         <a href="{% url 'AboutMeDelete' page.id %}">| Eliminar</a>
                         {% endif %}

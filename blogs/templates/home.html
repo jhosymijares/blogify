@@ -21,7 +21,7 @@ Página de inicio
                 <h5 class="blog-post-title mb-1">{{blog.title}}</h5>
                 <p class="blog-post-meta">{{blog.creation|date:'Y-m-d H:i '}} publicado por <b>{{blog.author}}</b></p>
                 <div style="width:100%;overflow:auto">
-                    {{blog.subtitle|safe|linebreaksbr}}...
+                    {{blog.subtitle|safe}}...
                     {% if is_authenticated == True%}
                     <a href="{% url 'BlogDetail' blog.id %}">Leer más</a>
                     {% endif %}
@@ -39,22 +39,11 @@ Página de inicio
                     <h4 class="fst-italic">Acerca de mí</h4>
                     <p class="mb-0">
                     <div style="overflow: auto;width: 100%;">
-                        {{description|safe|linebreaksbr}}
+                        {{description|safe}}
                     </div>
                     </p>
                 </div>
-
                 {% endif %}
-                <div class="p-4">
-                    <h4 class="fst-italic">Lista de páginas</h4>
-                    <ol class="list-unstyled mb-0">
-                        {% for page in pages %}
-                        <li title="{{page.title}}">
-                            <a href="{% url 'AboutMeDetail' page.id %}">{{page.title|truncatechars:30}}</a>
-                        </li>
-                        {% endfor %}
-                    </ol>
-                </div>
             </div>
         </div>
     </div>

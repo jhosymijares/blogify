@@ -13,13 +13,13 @@ Detalle de blog
             <hr>
             <article class="blog-post">                
                 <h3>{{blog.title}}</h3>                
-                <div style="width:100%;font-size: 12px;">{{blog.creation|date:'Y-m-d'}}</div>
-                <div style="width:100%;font-size: 12px;">Publicado por <b>{{blog.author}}</b></div>
+                <div style="width:100%;font-size: 11px;">{{blog.creation|date:'Y-m-d'}}</div>
+                <div style="width:100%;font-size: 11px;">Blog publicado por <b>{{blog.author}}</b></div>
                 {% if blog.image.image is not None%}
-                <div style="text-align:center">
+                <div>
                     <img src="/media/{{blog.image.image}}" title="{{blog.image.title}}" style="max-width: 410px;" />
-                    <p class="blog-post-meta" style="width:100%;font-size: 10px;">
-                        Fecha de publicación {{blog.image.creation|date:'Y-m-d'}}
+                    <p class="blog-post-meta" style="width:100%;font-size: 11px;">
+                        Imagen publicada el {{blog.image.creation|date:'Y-m-d'}}
                     </p>
                 </div>
                 {% endif %}
