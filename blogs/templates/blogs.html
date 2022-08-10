@@ -36,7 +36,7 @@ Listado de blogs
                     {{blog.subtitle|safe|linebreaksbr}}...
                     {% endautoescape %}
                     <div>
-                        {% if is_authenticated == True and user.username == 'root' %}
+                        {% if is_authenticated == True %}
                         <a href="{% url 'BlogifyBlogsDetail' blog.id %}">Leer más |</a>
                         {% endif %}
                         {% if blog.author == user.username %}
