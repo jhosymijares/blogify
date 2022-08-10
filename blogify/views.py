@@ -99,7 +99,7 @@ class AboutMeListView(ListView):
         set_header_menu_comtext(context, False)    
         return context
 
-class PageDetail(DetailView):
+class AboutMeDetail(DetailView):
     model = Page
     template_name = "about_me_detail.html"
     def get_context_data(self, **kwargs):

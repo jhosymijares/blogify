@@ -13,10 +13,9 @@ Actualizar blog
             {% csrf_token %}
             <div class="row g-5">
                 <div class="col-md-12">
-                    <!--  {{ form.as_p}}-->
                     <div class="form-floating">
                         <input type="text" class="form-control" id="floatingUserInputMessage"
-                            placeholder="Nombre de Usuario" name="title" value="{{blog.title}}">
+                            placeholder="Nombre de Usuario" name="title" value="{{blog.title}}" maxlength="200">
                         <label for="floatingUserInputMessage">Título del blog</label>
                         <p></p>
                     </div>

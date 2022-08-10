@@ -19,6 +19,7 @@ Listado de blogs
             {% if is_authenticated == True %}
             <a href="{% url 'BlogCreate' %}">Crear nuevo blog</a>
             {% endif%}
+            <p></p>
             <ul>
                 {% for blog in blogs %}
                 <article class="blog-post">

@@ -23,7 +23,7 @@ Página de inicio
                 <div style="width:100%;overflow:auto">
                     {{blog.subtitle|safe|linebreaksbr}}...
                     {% if is_authenticated == True%}
-                    <a href="{% url 'BlogifyBlogsDetail' blog.id %}">Leer más</a>
+                    <a href="{% url 'BlogDetail' blog.id %}">Leer más</a>
                     {% endif %}
                 </div>
                 <hr>
@@ -49,7 +49,9 @@ Página de inicio
                     <h4 class="fst-italic">Lista de páginas</h4>
                     <ol class="list-unstyled mb-0">
                         {% for page in pages %}
-                        <li title="{{page.title}}"><a href="#">{{page.title|truncatechars:25}}</a></li>
+                        <li title="{{page.title}}">
+                            <a href="{% url 'AboutMeDetail' page.id %}">{{page.title|truncatechars:30}}</a>
+                        </li>
                         {% endfor %}
                     </ol>
                 </div>

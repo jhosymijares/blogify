@@ -15,6 +15,7 @@ urlpatterns = [
     path('blogify/images/', login_required(views.Images), name = "Images"),
     path(r'blogify/image/delete/(?P<pk>\d+)$', login_required(views.ImageDelete.as_view()), name= 'ImageDelete'),
     path('blogify/acerca-de-mi', views.AboutMeListView.as_view(), name = "AboutMe"),    
+    path(r'blogify/page/detail-acerca-de-mi/(?P<pk>\d+)$', login_required(views.AboutMeDetail.as_view()), name = 'AboutMeDetail'),
     path(r'blogify/page/crear-acerca-de-mi/', login_required(views.AboutMeCreate.as_view()), name = 'AboutMeCreate'),
     path(r'blogify/page/actualizar-acerca-de-mi/(?P<pk>\d+)$', login_required(views.AboutMeUpdate.as_view()), name= 'AboutMeUpdate'),
     path(r'blogify/page/eliminar-acerca-de-mi/(?P<pk>\d+)$', login_required(views.AboutMeDelete.as_view()), name= 'AboutMeDelete'),

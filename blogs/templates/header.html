@@ -15,7 +15,7 @@
                     Bienvenido
                     <a href="/accounts/profile/" class="no-link">                         
                         <b>{{greeting}}</b>
-                        {% if profile is not None%}
+                        {% if profile is not None and profile.image is not None %}
                         <img src="/media/{{profile.image.image}}" width="40px"/>
                         {% endif %}
                     </a>                    

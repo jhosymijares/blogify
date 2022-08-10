@@ -71,27 +71,35 @@ def account_profile(request):
     profile_template = loader.get_template("profile.html")
     user = User.objects.get(pk=request.user.id)  
     context["user"] = user
-    
-    if Profile.objects.filter(pk=request.user.id).exists() is False:
-        Profile(user = user,description="",url_site="").save()    
-    profile = Profile.objects.get(pk = request.user.id)
-    
+            
     if request.method == 'POST':
         if request.POST.get("first_name") is not None:            
             user.first_name=request.POST.get("first_name") 
         if request.POST.get("last_name") is not None:  
             user.last_name=request.POST.get("last_name") 
         if request.POST.get("email") is not None:  
-            user.email=request.POST.get("email") 
-        if request.POST.get("description") is not None:    
-            profile.description=request.POST.get("description") 
-        if request.POST.get("url_site") is not None:  
-            profile.url_site=request.POST.get("url_site")
-        if request.POST.get("image") is not None and request.POST.get("image")!= "":
-            profile.image = Image(id=request.POST.get("image"))      
+            user.email=request.POST.get("email")         
 
+        if request.POST.get("image") is not None or request.POST.get("description") is not None or request.POST.get("url_site") is not None:
+            if Profile.objects.filter(pk = request.user.id).exists() is False:
+               Profile(user = user, description = "", url_site="").save()              
+            profile = Profile.objects.get(pk = request.user.id)
+
+            if request.POST.get("image") is not None and request.POST.get("image")!= "":                         
+                profile.image = Image(id = request.POST.get("image"))  
+                profile.save() 
+                profile = Profile.objects.get(pk = request.user.id)
+
+            if request.POST.get("description") is not None:    
+                profile.description=request.POST.get("description") 
+
+            if request.POST.get("url_site") is not None:  
+                profile.url_site=request.POST.get("url_site")           
+
+            context["profile"] = profile
+            profile.save()
         user.save()        
-        profile.save()
+        
         context["message"]="Tu perfil ha sido actualizado"
     
     context["images"]=Image.objects.all()
