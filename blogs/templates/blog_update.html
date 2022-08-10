@@ -7,7 +7,7 @@ Actualizar blog
 {% block content %}
 <script src="//cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
 <main class="container">
-    <a href="{% url 'BlogifyBlogsList' %}">Regresar</a>
+    <a href="{% url 'Blogs' %}">Regresar</a>
     <div class="container">
         <form method="POST">
             {% csrf_token %}

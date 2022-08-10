@@ -11,22 +11,18 @@ from accounts.models import Profile
 """
 def set_user_context(request, context):
     context["is_authenticated"] = request.user.is_authenticated
+    context["greeting"] = request.user
     if hasattr(request.user, 'first_name') and request.user.first_name!="":
-        context["greeting"] = request.user.first_name
-    else:
-        context["greeting"] = request.user
+        context["greeting"] = request.user.first_name        
     context["profile"] = Profile.objects.filter(user__username=request.user.username).first()
 
-def set_header_menu_comtext(context,option):
-    context["is_page"] = option
-    context["is_blog"] = option
-    context["is_img"] = option
-    context["is_profile"] = option  
+def set_header_menu_comtext(context,option):        
+    context["is_show"] = option  
 
-def messenger_chat(request):
+def chat_init(request):
     context = {}
     set_user_context(request,context)
-    set_header_menu_comtext(context,True)
+    set_header_menu_comtext(context, False)
     users = []    
     context["users"] = User.objects.all().exclude(username=request.user.username)
     for user in User.objects.all().exclude(username=request.user.username):       
@@ -40,10 +36,10 @@ def messenger_chat(request):
     context["firstime"]=True
     return HttpResponse(chat_template.render(context))
 
-def messenger_chat_user(request,username):
+def chat_with_user(request, username):
     context={}
     set_user_context(request,context)
-    set_header_menu_comtext(context,True)      
+    set_header_menu_comtext(context, False)      
     context["user"] = request.user
     
     chats = Chat.objects.filter(

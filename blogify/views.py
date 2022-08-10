@@ -6,17 +6,13 @@ from blogs.models import Page
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-import datetime
 from accounts.models import Profile
 from blogs.models import Image
 from blogs.models import ImageForm
-from django.db.models import ProtectedError
 
 """
     Blogify Views
 """
-def blogify_init(request):
-    return redirect('/blogify')
 
 def set_user_context(request, context):
     context["is_authenticated"] = request.user.is_authenticated
@@ -27,12 +23,13 @@ def set_user_context(request, context):
     context["profile"] = Profile.objects.filter(user__username=request.user.username).first()
 
 def set_header_menu_comtext(context, option):
-    context["is_page"] = option
-    context["is_blog"] = option
     context["is_img"] = option
-    context["is_profile"] = option  
+    context["is_show"] = option 
+
+def Init(request):
+    return redirect('/blogify') 
     
-def blogify_home(request):
+def Home(request):
     context = {}
     set_user_context(request, context)
     home_template = loader.get_template("home.html")    
@@ -44,7 +41,7 @@ def blogify_home(request):
     set_header_menu_comtext(context,True)
     return HttpResponse(home_template.render(context))    
 
-def image_upload_view(request):
+def Images(request):
     context = {}
     image_template = loader.get_template("image.html")  
     set_user_context(request, context)    
@@ -91,31 +88,30 @@ class ImageDelete(DeleteView):
         template = loader.get_template("image_delete.html")
         return HttpResponse(template.render(context))
 
-class PageListView(ListView):
+class AboutMeListView(ListView):
     model = Page
-    template_name = "pages.html"
+    template_name = "about_me.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         set_user_context(self.request,context)
         context['pages'] = Page.objects.filter().order_by('-id')
-        set_header_menu_comtext(context, True)    
-        context['is_page'] = False
+        set_header_menu_comtext(context, False)    
         return context
 
 class PageDetail(DetailView):
     model = Page
-    template_name = "page_detail.html"
+    template_name = "about_me_detail.html"
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         set_user_context(self.request,context)
         set_header_menu_comtext(context,False)  
         return context
 
-class PageCreate(CreateView):
+class AboutMeCreate(CreateView):
     model = Page
-    template_name = "page_create.html"
-    success_url = "../../pages"
+    template_name = "about_me_create.html"
+    success_url = "../../acerca-de-mi"
     fields = ["title","content"]
     def form_valid(self, form):
         if self.request.POST.get("image") is not None and self.request.POST.get("image")!= "":
@@ -129,10 +125,10 @@ class PageCreate(CreateView):
         context["images"]=Image.objects.all()
         return context
 
-class PageUpdate(UpdateView):
+class AboutMeUpdate(UpdateView):
     model = Page
-    template_name  = "page_update.html"
-    success_url = "../../pages"
+    template_name  = "about_me_update.html"
+    success_url = "../../acerca-de-mi"
     fields = ["title","content"]
 
     def form_valid(self, form):
@@ -147,10 +143,10 @@ class PageUpdate(UpdateView):
         context["images"]=Image.objects.all()
         return context
 
-class PageDelete(DeleteView):
+class AboutMeDelete(DeleteView):
     model = Page
-    template_name = "page_delete.html"
-    success_url = "../../pages" 
+    template_name = "about_me_delete.html"
+    success_url = "../../acerca-de-mi" 
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -166,8 +162,7 @@ class BlogListView(ListView):
         context = super().get_context_data(**kwargs)
         set_user_context(self.request,context)
         context['blogs'] = Blog.objects.filter().order_by('-creation', '-id')
-        set_header_menu_comtext(context,True) 
-        context['is_blog'] = False        
+        set_header_menu_comtext(context, False) 
         return context
 
 class BlogDetail(DetailView):

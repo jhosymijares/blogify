@@ -8,7 +8,7 @@ Mi perfil
 <form action="" method="POST">
     {% csrf_token %}
     <div class="container">
-        <a href="{% url 'BlogifyPageList' %}">Regresar</a>
+        <a href="{% url 'Home' %}">Regresar</a>
         <p></p>
         <div>
             <h3 class="pb-4 mb-4 fst-italic border-bottom">
@@ -79,7 +79,7 @@ Mi perfil
                     {% endfor %}
                 </ul>
                 <p class="StyleSubTitle">Todas las imágenes deben estar subidas previamente en la sección <a
-                        href="{% url 'BlogifyImages' %}">Imágenes</a></p>
+                        href="{% url 'Images' %}">Imágenes</a></p>
             </div>
         </div>
 

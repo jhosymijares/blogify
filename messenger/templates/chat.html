@@ -26,6 +26,7 @@ Mensajería chat
 </style>
 <section style="background-color: #ffffff;">
   <div class="container">
+    <a href="{% url 'Home' %}">Regresar</a>
     <p></p>
     <div>
         <h3 class="pb-4 mb-4 fst-italic border-bottom">
@@ -49,7 +50,7 @@ Mensajería chat
                     <ul class="list-unstyled mb-0">
                       {% for user in users %}
                       <li class="p-2 border-bottom">
-                        <a href="/blogify/messenger/chat/{{user.username}}" class="d-flex justify-content-between">
+                        <a href="/blogify/chat/with/{{user.username}}" class="d-flex justify-content-between">
                           <div class="d-flex flex-row">
                             <div>
                               {% if user.profile.image.image is not None %}
@@ -107,18 +108,19 @@ Mensajería chat
     </div>
   </div>
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script>
   $(function () {
     if ("{{firstime}}" === "False") {
-      const refresChat = (function () {
+      const refreshChat = (function () {
         $("#dvmessage").load(window.location.href + "?param=just-chat", function () {
           $(this).scrollTop(20000);
           $(this).parent().height()
         });
       })
-      refresChat()
+      refreshChat()
       window.setInterval(function () {
-        refresChat()
+        refreshChat()
       }, 5000);
     }
   })

@@ -1,24 +1,9 @@
-"""blogify URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.urls import path
 from . import views
 from django.contrib.auth.decorators import login_required
 
 #Messenger´s Routes
 urlpatterns = [
-    path('chat/', login_required(views.messenger_chat), name = 'Chat'),
-    path('chat/<str:username>/',login_required(views.messenger_chat_user), name='ChatUser')
+    path('', login_required(views.chat_init), name = 'ChatInit'),
+    path('with/<str:username>/',login_required(views.chat_with_user), name = 'ChatWithUser')
 ]

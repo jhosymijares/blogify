@@ -9,15 +9,8 @@ Listado de páginas
 <main class="container">
     <div class="row g-5">
         <div class="col-md-12">
-            <p></p>
-            <div>
-                <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                    Listado de páginas
-                </h3>
-            </div>
-            {% if is_authenticated == True %}
-            <a href="{% url 'BlogifyPageCreate' %}">Crear nueva página</a>
-            {% endif %}
+            <a href="{% url 'Home' %}">Regresar</a>
+            <p></p>          
             <ul>
                 {% for page in pages %}
                 <article class="blog-post">
@@ -32,16 +25,13 @@ Listado de páginas
                     </div>
                     {% endif %}
                     {% autoescape off %}
-                    {{page.content|truncatechars:400}}
+                    {{page.content}}
                     {% endautoescape %}
 
                     <div>
-                        {% if is_authenticated == True %}
-                            <a href="{% url 'BlogifyPageDetail' page.id%}">Leer más</a>  
-                        {% endif %}                                                                      
-                        {% if is_authenticated == True and user.username == 'root' %}
-                        <a href="{% url 'BlogifyPageUpdate' page.id %}">| Editar</a>
-                        <a href="{% url 'BlogifyPageDelete' page.id %}">| Eliminar</a>
+                        {% if is_authenticated == True and user.username == 'user.admin' %}
+                        <a href="{% url 'AboutMeUpdate' page.id %}">Editar</a>
+                        <a href="{% url 'AboutMeDelete' page.id %}">| Eliminar</a>
                         {% endif %}
                     </div>
                 </article>

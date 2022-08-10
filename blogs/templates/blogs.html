@@ -9,6 +9,7 @@ Listado de blogs
 <main class="container">
     <div class="row g-5">
         <div class="col-md-12">
+            <a href="{% url 'Home' %}">Regresar</a>
             <p></p>
             <div>
                 <h3 class="pb-4 mb-4 fst-italic border-bottom">
@@ -16,7 +17,7 @@ Listado de blogs
                 </h3>  
             </div>           
             {% if is_authenticated == True %}
-            <a href="{% url 'BlogifyBlogCreate' %}">Crear nuevo blog</a>
+            <a href="{% url 'BlogCreate' %}">Crear nuevo blog</a>
             {% endif%}
             <ul>
                 {% for blog in blogs %}
@@ -37,11 +38,11 @@ Listado de blogs
                     {% endautoescape %}
                     <div>
                         {% if is_authenticated == True %}
-                        <a href="{% url 'BlogifyBlogsDetail' blog.id %}">Leer más |</a>
+                        <a href="{% url 'BlogDetail' blog.id %}">Leer más |</a>
                         {% endif %}
                         {% if blog.author == user.username %}
-                        <a href="{% url 'BlogifyBlogUpdate' blog.id %}">Editar</a>
-                        <a href="{% url 'BlogifyBlogDelete' blog.id %}">| Eliminar</a>
+                        <a href="{% url 'BlogUpdate' blog.id %}">Editar</a>
+                        <a href="{% url 'BlogDelete' blog.id %}">| Eliminar</a>
                         {% endif %}
                     </div>
                     <hr>

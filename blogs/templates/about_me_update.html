@@ -7,7 +7,8 @@ Actualizar página
 {% block content %}
 <script src="//cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
 <main class="container">
-    <a href="{% url 'BlogifyPageList' %}">Regresar</a>
+    <a href="{% url 'AboutMe' %}">Regresar</a>
+    <p></p>
     <div class="container">
         <form method="POST">
             {% csrf_token %}
@@ -38,7 +39,7 @@ Actualizar página
                             </ul>
                         </div>
                         <p>Todas las imágenes deben estar subidas previamente en la sección <a
-                                href="{% url 'BlogifyImages' %}">Imágenes</a></p>
+                                href="{% url 'Images' %}">Imágenes</a></p>
                     </div>
 
                     <div class="django-ckeditor-widget" data-field-id="id_content"

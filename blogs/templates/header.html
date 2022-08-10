@@ -39,20 +39,15 @@
     <nav class="nav d-flex xjustify-content-between">
         {% if is_home == True %}
         <a class="p-2 link-secondary" href="/">Inicio</a>
-        {% endif %}
-        {% if is_authenticated == True and is_profile == True %}
+        {% endif %}        
+        {% if is_authenticated == True and is_show == True %}
         <a class="p-2 link-secondary" href="/accounts/profile">Mi perfil</a>
-        {% endif %}
-        {% if is_authenticated == True and is_profile == True %}
-        <a class="p-2 link-secondary" href="/blogify/messenger/chat">Chat</a>
-        {% endif %}
-        {% if is_authenticated == True and is_img == True %}
+        <a class="p-2 link-secondary" href="/blogify/chat">Chat</a>
         <a class="p-2 link-secondary" href="/blogify/images">Imágenes</a>
-        {% endif %}
-        {% if is_page == True %}
-        <a class="p-2 link-secondary" href="/blogify/pages">Acerca de mí</a>
-        {% endif %}
-        {% if is_blog == True %}
+          
+        {% endif %}  
+        {% if is_show == True %}
+        <a class="p-2 link-secondary" href="/blogify/acerca-de-mi">Acerca de mí</a>   
         <a class="p-2 link-secondary" href="/blogify/blogs">Blogs</a>
         {% endif %}
     </nav>

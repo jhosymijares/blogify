@@ -38,7 +38,7 @@ Listado de imágenes
   }
 </style>
 <div class="container">
-  <a href="{% url 'BlogifyInit' %}">Regresar</a>
+  <a href="{% url 'Home' %}">Regresar</a>
   <p></p>
   <p></p>
   <div>
@@ -85,7 +85,7 @@ Listado de imágenes
         <article>
           <p>
             <img src="/media/{{image.image}}" style="width: 100px;" title="{{image.title}}" />
-            <a href="{% url 'BlogifyImageDelete' image.id %}">Eliminar</a>
+            <a href="{% url 'ImageDelete' image.id %}">Eliminar</a>
           </p>
           <hr>
         </article>

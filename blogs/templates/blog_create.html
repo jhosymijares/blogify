@@ -10,7 +10,7 @@ Crear un nuevo blog
 <form method="POST">
     {% csrf_token %}
     <div class="container">        
-        <a href="{% url 'BlogifyBlogsList' %}">Regresar</a>
+        <a href="{% url 'Blogs' %}">Regresar</a>
         <p></p>
         <div>
             <h3 class="pb-4 mb-4 fst-italic border-bottom">
@@ -40,7 +40,7 @@ Crear un nuevo blog
                     {% endfor %}
                 </ul>
                 <p class=StyleSubTitle>Todas las imágenes deben estar subidas previamente en la sección <a
-                        href="{% url 'BlogifyImages' %}">Imágenes</a></p>
+                        href="{% url 'Images' %}">Imágenes</a></p>
             </div>
             <p></p>
         </div>
