@@ -12,16 +12,20 @@ Página de inicio
 </style>
 <main class="container">
     <div class="row g-5">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <h3 class="pb-4 mb-4 fst-italic border-bottom">
                 Listado de blogs
             </h3>
             {% for blog in blogs %}
             <article class="blog-post">
                 <h5 class="blog-post-title mb-1">{{blog.title}}</h5>
-                <p class="blog-post-meta">{{blog.creation|date:'Y-m-d H:i '}} publicado por <b>{{blog.author}}</b></p>
+                <p class="blog-post-meta" style="font-size: 11px;">
+                    {{blog.creation|date:'Y-m-d H:i '}} publicado por <b>{{blog.author}}</b>
+                </p>
                 <div style="width:100%;overflow:auto">
-                    {{blog.subtitle|safe}}...
+                    {{blog.subtitle|safe}}...                    
+                </div>
+                <div>
                     {% if is_authenticated == True%}
                     <a href="{% url 'BlogDetail' blog.id %}">Leer más</a>
                     {% endif %}
