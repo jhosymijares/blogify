@@ -10,33 +10,38 @@ Listado de páginas
     <div class="row g-5">
         <div class="col-md-12">
             <a href="{% url 'Home' %}">Regresar</a>
-            <p></p>          
-            <ul>
-                {% for page in pages %}
-                <article class="blog-post">
-                    <h2 class="blog-post-title mb-1">{{page.title}}</h2>
-                    <p></p>
-                    {% if page.image.image is not None%}
-                    <div>
-                        <img src="/media/{{page.image.image}}" title="{{page.image.title}}" style="max-width: 200px;" />
-                        <p class="blog-post-meta" style="width:100%;font-size: 11px;">
-                            Imagen publicada el {{page.image.creation|date:'Y-m-d'}}
-                        </p>
-                    </div>
-                    {% endif %}
-                    {% autoescape off %}
-                    {{page.content}}
-                    {% endautoescape %}
-
-                    <div>
+            <p></p>                      
+            {% for page in pages %}
+            <article class="blog-post">
+                <h2 class="blog-post-title mb-1">{{page.title}}</h2>
+                <p></p>
+                <div class="container text-center">
+                    <div class="row">
+                      <div class="col col-3">
+                        {% if page.image.image is not None%}
+                        <div>
+                            <img src="/media/{{page.image.image}}" title="{{page.image.title}}" style="max-width: 200px;" />
+                            <p class="blog-post-meta" style="width:100%;font-size: 11px;">
+                                Imagen publicada el {{page.image.creation|date:'Y-m-d'}}
+                            </p>
+                        </div>
+                        {% endif %}
+                      </div>
+                      <div class="col col-9" style="text-align: justify;">
+                        {% autoescape off %}
+                        {{page.content}}
+                        {% endautoescape %}
+                      </div>
+                      <div>
                         {% if is_authenticated == True and user.username == "user.admin" %}
                         <a href="{% url 'AboutMeUpdate' page.id %}">Editar</a>
                         <a href="{% url 'AboutMeDelete' page.id %}">| Eliminar</a>
                         {% endif %}
                     </div>
-                </article>
-                {% endfor %}
-            </ul>
+                    </div>
+                  </div>                                                
+            </article>
+            {% endfor %}
         </div>
     </div>
 </main>
