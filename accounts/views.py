@@ -53,12 +53,12 @@ def account_login(request):
                     return redirect("/")            
             else:
                 return HttpResponse(login_template.render({
-                    "message":"Error, datos incorrectos"
+                    "message":"Su nombre de usuario o contraseña son incorrectos"
                 }))
                 
         else:
             return HttpResponse(login_template.render({
-                "message":"Error, datos incorrectos"
+                "message":"Su nombre de usuario o contraseña son incorrectos"
             })) 
 
     return HttpResponse(login_template.render({        
