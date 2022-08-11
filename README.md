@@ -11,7 +11,7 @@
 
 ### Video: Tour Virtual
 
-  En el siguiente video podrás visializar las funcionalidades de la app **Blogify**: [Ver video tutorial](https://my-blogify.herokuapp.com/blogify/)
+  En el siguiente video podrás visializar las funcionalidades de la app **Blogify**: [Ver video tutorial](https://drive.google.com/file/d/1kcRhLokswTH9cGnLV1HAXT5nzqGkCFlq/view?usp=sharing)
 
 ### Opción 1: Abrir la app desde herokuapp
 
