@@ -9,7 +9,11 @@
 
 ## Demo
 
-### Opción 1: Desde herokuapp
+### Video: Tour Virtual
+
+  En el siguiente video podrás visializar las funcionalidades de la app **Blogify**: [Ver video tutorial](https://my-blogify.herokuapp.com/blogify/)
+
+### Opción 1: Abrir la app desde herokuapp
 
   Para abrir la app desde herokuapp:
 
@@ -29,7 +33,7 @@
 
   3. Encontrarás las diversas funcionalidades de la app (ver en la sección **Features**)
 
-### Opción 2: Localmente
+### Opción 2: Configurar la app localmente
 
   Para ejecutar esta app localmente debe seguir los siguientes pasos:
 
@@ -87,9 +91,9 @@
   - [Desde herokuapp: Acerca de mí](https://my-blogify.herokuapp.com/blogify/acerca-de-mi)
 
   - [Desde localapp: Acerca de mí](http://localhost:8000/blogify/acerca-de-mi)
+  
 
-
-🙋🏻‍♀️ Ingresar al modelo/página de **Blogs**: aquí podrás visualizar información de los blogs creados y administración de ellos:
+🗒 Ingresar al modelo/página de **Blogs**: aquí podrás visualizar información de los blogs creados y administración de ellos:
 
   - [Desde herokuapp: Blogs](https://my-blogify.herokuapp.com/blogify/blogs)
 
