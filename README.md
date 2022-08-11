@@ -86,14 +86,14 @@ Integrantes del proyecto:
 
 🙋🏻‍♀️ Ingresar al modelo/página **Acerca de mí**: aquí podrás visualizar información de los creadores de la appp:
 
-  - [Desde herokuapp: Acerca de mí](https://my-blogify.herokuapp.com/acerca-de-mi)
+  - [Desde herokuapp: Acerca de mí](https://my-blogify.herokuapp.com/blogify/acerca-de-mi)
 
   - [Desde localapp: Acerca de mí](http://localhost:8000/blogify/acerca-de-mi)
 
 
 🙋🏻‍♀️ Ingresar al modelo/página de **Blogs**: aquí podrás visualizar información de los blogs creados y administración de ellos:
 
-  - [Desde herokuapp: Blogs](https://my-blogify.herokuapp.com/blogs)
+  - [Desde herokuapp: Blogs](https://my-blogify.herokuapp.com/blogify/blogs)
 
   - [Desde localapp: Blogs](http://localhost:8000/blogify/blogs)
   
