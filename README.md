@@ -5,8 +5,6 @@
 
 ## Authors
 
-Integrantes del proyecto:
-
 - [Jhoselyn Mijares Hurtado](https://www.github.com/jhosymijares)
 
 ## Demo
