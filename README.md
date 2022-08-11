@@ -49,6 +49,13 @@ Integrantes del proyecto:
 
 ## Features
 
+👀 Ingresar al **Inicio** de la aplicación sin estar logueado: en esta sección sólo podrás tener una vista resumida de los **Blogs** y de los creadores de la app en la sección **Acerca de mí**
+
+  - [Desde herokuapp: Inicio-Home](https://my-blogify.herokuapp.com/blogify/)
+
+  - [Desde localapp: Inicio-Home](http://localhost:8000/blogify/)
+  
+
 🔐 Ingresar al modelo/página para **iniciar sesión**: en esta seccción podrás acceder a la home de la aplicación y visualizar las diferentes funcionalidades.
 
   - [Desde herokuapp: Iniciar sesión](https://my-blogify.herokuapp.com/accounts/login/)
@@ -72,7 +79,7 @@ Integrantes del proyecto:
 
 🙌🏼 Ingresar al modelo/página para iniciar un **chat** con tus contactos: en esta sección puedes visualizar contactos e iniciar chat con alguno de ellos.
 
-  - [Desde herokuapp: Mi chat](https://my-blogify.herokuapp.com/chat/)
+  - [Desde herokuapp: Mi chat](https://my-blogify.herokuapp.com/blogify/chat/)
 
   - [Desde localapp: Mi chat](http://localhost:8000/blogify/chat/)
 
